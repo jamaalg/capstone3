@@ -1,0 +1,40 @@
+{
+  "events": [
+    {
+      "name": "Mt. Washington",
+      "desc": "Mt. Washington (6,288 feet) is the highest peak east of the Mississippi River and north of the Carolinas. The upper part of the mountain has a climate similar to that of northern Labrador and supports a variety of alpine flora and fauna.",
+      "startTime": "",
+      "duration": 60,
+      "promoter": "LM Productions",
+      "category": "Business",
+      "ticketPrice": 18.99,
+      "capacity": 500,
+      "attendees": ["Franklin, Erica", "Neely, Scott", "Glanton, Jamaal"],
+      "location": {
+        "address": "123 Sesame Street",
+        "state": "New york",
+        "city": "SmileyTown",
+        "lat": 44.270403,
+        "lng": -71.303501
+      }
+    },
+    {
+      "name": "Mt. Washington",
+      "desc": "Mt. Washington (6,288 feet) is the highest peak east of the Mississippi River and north of the Carolinas. The upper part of the mountain has a climate similar to that of northern Labrador and supports a variety of alpine flora and fauna.",
+      "startTime": "",
+      "duration": 60,
+      "promoter": "LM Productions",
+      "category": "Business",
+      "ticketPrice": 18.99,
+      "capacity": 500,
+      "attendees": ["Franklin, Erica", "Neely, Scott", "Glanton, Jamaal"],
+      "location": {
+        "address": "123 Sesame Street",
+        "state": "New york",
+        "city": "SmileyTown",
+        "lat": 44.270403,
+        "lng": -71.303501
+      }
+    }
+  ]
+}

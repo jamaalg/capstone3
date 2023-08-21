@@ -5,14 +5,14 @@ Capstone3
 All Events
 Individual Event - description - Location - Rating - RSVP Button
 RSVP Form - Ticket Purchase
+Create Event Form
 
 Database Schema for Events
-
 [Events]
 EventName - string
 EventDescription - string
 EventStartTime - datetime
-EventDuration -
+EventDuration - number
 Location ( State & City Separate fro filtering)
 Address - string
 ZipCode - number

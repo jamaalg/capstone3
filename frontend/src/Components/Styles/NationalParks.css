@@ -1,0 +1,17 @@
+.parks-card-container {
+}
+
+.park-query-value {
+  font-size: 50px;
+}
+
+.park-query-data-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.dropdown{
+  margin-bottom: 10px;
+}
