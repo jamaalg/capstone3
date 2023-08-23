@@ -1,10 +1,7 @@
-import { Card2 } from './Card2';
-import './Styles/Footer.css';
-
-export const Footer = () => {
+export const Search = () => {
   return (
     <div>
-      <h1 className='footer-title'>Featured Parks</h1>
+      <h1 className='footer-title'>Event Search</h1>
       <div className='footer-container'>
         {/*       <Card2
           img={photo1}

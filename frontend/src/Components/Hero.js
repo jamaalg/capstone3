@@ -6,7 +6,6 @@ export const Hero = () => {
 
   return (
     <div className='hero-container'>
-      <p className="tagline">Discover the Outdoors! </p>
       <div className='button-container'>
         <button onClick={() => navigate('/nationalparks')}>
           Explore National Parks

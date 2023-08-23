@@ -6,16 +6,12 @@
 }
 
 .hero-container {
-  background-image: url('/public/Banner.jpg');
-  height: 400px;
+  background-image: url('../../../public//images/business-event-flyer-905353253.png');
+  height: 500px;
   background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.tagline {
-  color: white;
-  font-size: 80px;
-  -webkit-text-stroke: 0.5px black;
+  margin-left: 20px;
+  margin-right: 20px;
 }
