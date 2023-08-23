@@ -7,10 +7,8 @@ export const Hero = () => {
   return (
     <div className='hero-container'>
       <div className='button-container'>
-        <button onClick={() => navigate('/nationalparks')}>
-          Explore National Parks
-        </button>
-        <button onClick={() => navigate('/mountains')}>Search Mountains</button>
+        <button onClick={() => navigate('/nationalparks')}>Button1</button>
+        <button onClick={() => navigate('/mountains')}>Button2</button>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import './Styles/Footer.css';
 export const Footer = () => {
   return (
     <div>
-      <h1 className='footer-title'>Featured Parks</h1>
+      <h1 className='footer-title'>Footer</h1>
       <div className='footer-container'>
         {/*       <Card2
           img={photo1}
