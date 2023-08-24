@@ -1,0 +1,72 @@
+.search-box-container {
+  display: flex;
+}
+
+.search-bar {
+  width: 500px;
+  margin-right: 20px;
+}
+
+.search-main-container {
+  display: flex;
+  border: 1px green solid;
+  height: 1000px;
+  padding: 50px;
+}
+
+.search-filters {
+  border: 1px red solid;
+  width: 30%;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-results {
+  border: 1px blue solid;
+  width: 70%;
+}
+
+.date-picker {
+  width: 75%;
+  border: 1px black solid;
+}
+
+.date-filter-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.individual-radio {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-filter-container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.individual-radio {
+  display: flex;
+  flex-direction: column;
+}
+
+.promoter-filter-container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.location-filter-container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}

@@ -43,7 +43,7 @@ function App() {
       <Router>
         <div className='App'>
           <nav className='nav-container'>
-            <ul>
+            <ul className='nav-list'>
               <li>
                 <Link to='/home'>Home </Link>
               </li>
