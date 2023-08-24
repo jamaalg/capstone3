@@ -1,0 +1,24 @@
+.upcoming-events-container{
+  margin-bottom: 300px;
+  margin-left: 50px;
+  margin-right: 50px;
+
+  background-color: brown;
+ 
+}
+.events-card-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-wrap: wrap;
+
+}
+
+.upcoming-events-header{
+
+    text-align: left;
+
+}
