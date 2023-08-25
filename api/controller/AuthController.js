@@ -36,7 +36,7 @@ export const register = (req, res, next) => {
 }
 
 export const registerFakeUser = async (userParam) => {
-    bcrypt.hash(user.password, 10, (err, hashedPass) => {
+    bcrypt.hash(userParam.password, 10, async (err, hashedPass) => {
         if (err) {
             throw new Error(err)
         }
@@ -52,13 +52,16 @@ export const registerFakeUser = async (userParam) => {
             events: userParam.events,
         })
 
-        user.save()
-            .then((user) => user)
+        console.log({ userModel: user })
+
+        return await user
+            .save()
+            .then((user) => {
+                return 'User created successfully.'
+            })
             .catch((error) => {
                 if (error.code === 11000) {
-                    throw new Error(
-                        'Email already exists, please use another email to register your account.'
-                    )
+                    return 'Email already exists, please use another email to register your account.'
                 }
                 throw new Error('An unknown error occured!')
             })

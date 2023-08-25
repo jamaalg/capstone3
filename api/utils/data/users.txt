@@ -1,1 +1,11 @@
-JavaJunkie, LockedUser1
+TwitchGamer, Welcome2022
+EmailNinja, Pa$$w0rd
+DevOpsPro, WebDev2022
+EmailNinja, Protected1234
+DigitalMarketer, DemoUser123
+3DModeler, SecretPass
+ARAdventurer, RandomPwd
+BlockchainPioneer, AccessGranted
+ARAdventurer, AccessDenied!
+TechSupport, Demo123
+MarketingGuru, WebDeveloper1

@@ -25,8 +25,8 @@ export const previewGeneratedEvent = async (req, res, next) => {
         const eventData = await generateEventData()
         console.log(eventData)
         res.send(eventData)
-    } catch (error) {
-        throw new Error(error)
+    } catch (err) {
+        throw new Error(err)
     }
 }
 
@@ -53,22 +53,13 @@ export const generateAndSaveEvent = async (req, res, next) => {
 export const generateAndSaveUser = async (req, res, next) => {
     try {
         const userData = await generateUserData()
-        console.log('User object about to be created ....')
-
-        const user = await new User(userData)
-
-        console.log({
-            user,
-        })
-        const response = await registerFakeUser(user)
-        console.log({
-            response,
-        })
+        await writeToFile(userData.username, userData.password)
+        const response = await registerFakeUser(userData)
         res.json({
-            message: 'User successfully saved.',
-            response,
+            message: response,
         })
-    } catch (error) {
+    } catch (err) {
+        console.error(err)
         res.json({
             error,
         })
@@ -138,7 +129,6 @@ export const generateEventData = async () => {
 
 export const generateUserData = async () => {
     try {
-        console.log('Generating User Data..')
         const location = await getCityState()
         const username = fake.usernames[await getRandomBtwn0and99()]
         const email = fake.email[await getRandomBtwn0and99()]
@@ -168,10 +158,9 @@ export const getCityState = async () => {
 }
 
 const writeToFile = async (username, password) => {
-    fs.writeFile(
+    fs.appendFile(
         path.join(__dirname, '../utils/data/users.txt'),
-        `${username}, ${password}`,
-        {},
+        `${username}, ${password}\n`,
         (err) => {
             if (err) throw err
             console.log('The file has been saved!')
