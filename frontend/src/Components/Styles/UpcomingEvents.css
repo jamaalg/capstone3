@@ -1,22 +1,20 @@
-.upcoming-events-container{
+body {
+  background-color: #f6f5f8;
+}
+
+.upcoming-events-container {
   margin-bottom: 300px;
   margin-left: 50px;
   margin-right: 50px;
-
- 
 }
-.events-card-container{
+.events-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-
-    flex-wrap: wrap;
-
+  flex-wrap: wrap;
 }
 
-.upcoming-events-header{
-
-    text-align: left;
-
+.upcoming-events-header {
+  text-align: left;
 }

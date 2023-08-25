@@ -1,17 +1,19 @@
-
-
-.nav-list{
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    
+body,
+html {
+  font-family: "Roboto", sans-serif;
 }
 
-.nav-list li{
-    margin-right: 10px;
-    text-decoration: none;
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-list li {
+  margin-right: 10px;
+  text-decoration: none;
 }
 
 .nav-list li:hover {
-    background-color: rgb(204, 200, 200);
-    }
+  background-color: rgb(204, 200, 200);
+}
