@@ -1,37 +1,60 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import { UpcomingEvents } from "./UpcomingEvents";
-import "./Styles/Search.css";
-import "react-datepicker/dist/react-datepicker.css";
-import { Dropdown } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import { EventCard } from './EventCard.js';
+import './Styles/Search.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Dropdown } from 'react-bootstrap';
+import axios from 'axios';
 
 export const Search = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [promoters, setPromoters] = useState([]);
+  const [promoter, setPromoter] = useState('');
+  const [locations, setLocations] = useState([]);
+  const [location, setLocation] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [categorie, setCategorie] = useState('');
+  const [events, setEvents] = useState([]);
+  const [dates, setDates] = useState([]);
 
-  const [local, setLocation] = useState([]);
-
-  const locations = [
+  /*   const locations = [
     {
       id: 1,
-      city: "Seattle",
-      state: "WA",
+      city: 'Seattle',
+      state: 'WA',
     },
     {
       id: 2,
-      city: "Chicago",
-      state: "IL",
+      city: 'Chicago',
+      state: 'IL',
     },
     {
       id: 3,
-      city: "New Jersey",
-      state: "NY",
+      city: 'New Jersey',
+      state: 'NY',
     },
     {
       id: 4,
-      city: "Dallas",
-      state: "TX",
+      city: 'Dallas',
+      state: 'TX',
     },
-  ];
+  ]; */
+
+  useEffect(() => {
+    getInfo();
+  }, []);
+
+  const getInfo = async () => {
+    const response = await axios
+      .get('http://localhost:4000/')
+      .then((res) => res.data);
+    setPromoters(response.promoters);
+    setEvents(response.events);
+    setCategories(response.categories);
+    setDates(response.date);
+
+    console.log(response);
+  };
 
   const handleLocationClick = (event) => {
     console.log(event);
@@ -45,51 +68,66 @@ export const Search = () => {
 
   return (
     <div>
-      <div className="search-box-container">
-        <input className="search-bar" type="search"></input>
+      <div className='search-box-container'>
+        <input className='search-bar' type='search'></input>
         <button>Search</button>
       </div>
-      <div className="search-main-container">
-        <div className="search-filters">
+      <div className='search-main-container'>
+        <div className='search-filters'>
           <h1>Filters</h1>
-          <div className="date-filter-container">
+          <div className='date-filter-container'>
             <label>Date</label>
             <DatePicker
-              className="date-picker"
+              className='date-picker'
               selected={startDate}
               onChange={(date) => setStartDate(date)}
             />
           </div>
-          <div className="category-filter-container">
+          <div className='category-filter-container'>
             <label>Category</label>
-            <div className="radio-container">
-              <div className="individual-radio">
-                <input type="radio" value="Sports" />
+            <div className='radio-container'>
+              <div className='individual-radio'>
+                <input type='radio' value='Sports' />
                 <label>Sports</label>
               </div>
-              <div className="individual-radio">
-                <input type="radio" value="Theater" />
+              <div className='individual-radio'>
+                <input type='radio' value='Theater' />
                 <label>Theater</label>
               </div>
-              <div className="individual-radio">
-                <input type="radio" value="Business" />
+              <div className='individual-radio'>
+                <input type='radio' value='Business' />
                 <label>Business</label>
               </div>
-              <div className="individual-radio">
-                <input type="radio" value="Concerts" />
+              <div className='individual-radio'>
+                <input type='radio' value='Concerts' />
                 <label>Concerts</label>
               </div>
             </div>
           </div>
-          <div className="promoter-filter-container">
+          <div className='promoter-filter-container'>
             <label>Promoter</label>
+            <Dropdown className='Mnt-dropdownbtn'>
+              <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                Promoter
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {promoters.map((p) => {
+                  return (
+                    <Dropdown.Item data-id={p} onClick={handleLocationClick}>
+                      {p}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
-          <div className="location-filter-container">
-            <div className="dropdown-container">
+          <div className='location-filter-container'>
+            <div className='dropdown-container'>
               <label>Location</label>
 
-              <Dropdown className="Mnt-dropdownbtn">
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown className='Mnt-dropdownbtn'>
+                <Dropdown.Toggle variant='success' id='dropdown-basic'>
                   Locations
                 </Dropdown.Toggle>
 
@@ -109,7 +147,11 @@ export const Search = () => {
             </div>
           </div>
         </div>
-        <div className="search-results">2</div>
+        <div className='search-results'>
+          {events.map((item) => {
+            return <EventCard event={item} />;
+          })}
+        </div>
       </div>
     </div>
   );

@@ -14,7 +14,10 @@ import {
 import { useEffect, useState, useRef } from 'react';
 
 function App() {
-  const [categories, setCategories] = useState([]);
+  const cats = ['Sports', 'Concerts', 'Business', 'Performing/Visual Arts'];
+
+  const [categories, setCategories] = useState(cats);
+
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -24,18 +27,21 @@ function App() {
       console.log('mounting');
       isMounted.current = true;
     }
-    getCategories();
-  }, []);
 
-  const getCategories = () => {
-    axios
-      .get('http://localhost:4000/')
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return () => {
+      console.log('Clean up');
+    };
+  }, [categories]);
+
+  const getCategories = async () => {
+    try {
+      const response = await axios
+        .get('http://localhost:4000/')
+        .then((res) => res.data);
+      setCategories(response);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -59,7 +65,7 @@ function App() {
             </ul>
           </nav>
           <Routes>
-            <Route path='/home' element={<Home categories={categories} />} />
+            <Route path='/home' element={<Home categories={cats} />} />
             <Route path='/search' element={<Search />} />
             <Route path='/event' element={<Event />} />
             <Route path='/rsvp' element={<Rsvp />} />

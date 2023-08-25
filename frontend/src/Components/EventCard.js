@@ -6,11 +6,13 @@ export const EventCard = ({ event }) => {
       <div className='card-img'></div>
 
       <div className='card-body'>
-        <h5 className='event-name'>{event.name}</h5>
-        <p className='event-location'>{event.location}</p>
-        <p className='event-date'>{event.date}</p>
-        <p className='event-ticketprice'>{event.ticketprice}</p>
-        <p className='event-attendees'>{event.attendees}</p>
+        <h6 className='card-body-event-name'>{event.name}</h6>
+        <p className='card-body-event-location'>
+          {event.location.city}, {event.location.state}{' '}
+        </p>
+        <p className='card-body-event-date'>{event.date}</p>
+        <p className='card-body-event-ticketprice'>${event.ticketPrice}</p>
+        <p className='card-body-event-attendees'>{event.attendees.length}</p>
       </div>
     </div>
   );
