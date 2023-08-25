@@ -1,0 +1,23 @@
+.event-info-container {
+  border: 1px solid #e8f6d3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-date {
+}
+
+.event-title {
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+.event-image {
+  width: 45%;
+}
+
+.event-submit-button {
+}
