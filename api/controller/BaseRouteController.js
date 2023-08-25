@@ -26,6 +26,7 @@ const getDistinctValues = async () => {
         promoters: await Event.distinct('promoter'),
         categories: await Event.distinct('category'),
         date: await Event.distinct('date'),
+        locations: fake.cities,
     }
     return values
 }

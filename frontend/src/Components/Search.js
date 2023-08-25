@@ -17,29 +17,6 @@ export const Search = () => {
   const [events, setEvents] = useState([]);
   const [dates, setDates] = useState([]);
 
-  /*   const locations = [
-    {
-      id: 1,
-      city: 'Seattle',
-      state: 'WA',
-    },
-    {
-      id: 2,
-      city: 'Chicago',
-      state: 'IL',
-    },
-    {
-      id: 3,
-      city: 'New Jersey',
-      state: 'NY',
-    },
-    {
-      id: 4,
-      city: 'Dallas',
-      state: 'TX',
-    },
-  ]; */
-
   useEffect(() => {
     getInfo();
   }, []);
@@ -52,6 +29,8 @@ export const Search = () => {
     setEvents(response.events);
     setCategories(response.categories);
     setDates(response.date);
+
+    setLocations(response.locations);
 
     console.log(response);
   };
@@ -74,7 +53,6 @@ export const Search = () => {
       </div>
       <div className="search-main-container">
         <div className="search-filters">
-          <h1>Filters</h1>
           <div className="date-filter-container">
             <label>Date</label>
             <DatePicker
@@ -106,8 +84,12 @@ export const Search = () => {
           </div>
           <div className="promoter-filter-container">
             <label>Promoter</label>
-            <Dropdown className="Mnt-dropdownbtn">
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown>
+              <Dropdown.Toggle
+                className="search-button"
+                variant="success"
+                id="dropdown-basic"
+              >
                 Promoter
               </Dropdown.Toggle>
 
@@ -126,8 +108,12 @@ export const Search = () => {
             <div className="dropdown-container">
               <label>Location</label>
 
-              <Dropdown className="Mnt-dropdownbtn">
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown>
+                <Dropdown.Toggle
+                  className="search-button"
+                  variant="success"
+                  id="dropdown-basic"
+                >
                   Locations
                 </Dropdown.Toggle>
 
@@ -135,10 +121,10 @@ export const Search = () => {
                   {locations.map((location) => {
                     return (
                       <Dropdown.Item
-                        data-id={location.id}
+                        data-id={location}
                         onClick={handleLocationClick}
                       >
-                        {location.city}, {location.state}
+                        {location}
                       </Dropdown.Item>
                     );
                   })}

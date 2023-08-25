@@ -1,20 +1,29 @@
 .search-box-container {
   display: flex;
+  margin-left: 15px;
+}
+
+.search-button {
+  background-color: #5f0f40;
+  border-color: black;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .search-bar {
   width: 500px;
   margin-right: 20px;
+  margin-left: 40px;
 }
 
 .search-main-container {
   display: flex;
-  border: 1px green solid;
   padding: 50px;
 }
 
 .search-filters {
-  border: 1px red solid;
   width: 30%;
   margin-right: 25px;
   display: flex;
@@ -22,7 +31,8 @@
 }
 
 .search-results {
-  border: 1px blue solid;
+  display: flex;
+  align-items: end;
 }
 
 .date-picker {
