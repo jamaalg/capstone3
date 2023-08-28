@@ -1,20 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import { Hero } from './Hero';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Styles/Event.css';
 import axios from 'axios';
-import {
-  GoogleMap,
-  useJsApiLoader,
-  Marker,
-  InfoWindow,
-  withGoogleMap,
-  withScriptjs,
-} from '@react-google-maps/api';
+import { useJsApiLoader, GoogleMap } from '@react-google-maps/api';
 
 export const Event = () => {
   const eventData = useLocation();
-
   const { _id, date, name, description, promoter, location } =
     eventData.state.eventData;
 
@@ -63,8 +54,10 @@ export const Event = () => {
     }
   };
 
+  const Google = new GoogleMap();
   useEffect(() => {
     getGeoLocationCoordinates();
+    console.log(eventData);
   }, []);
 
   return (
@@ -80,15 +73,6 @@ export const Event = () => {
         <p className='event-date'>{date}</p>
         <h6> {promoter}</h6>
         <h2 className='event-title'>{name}</h2>
-        {!isLoaded ? (
-          <GoogleMap
-            mapContainerClassName='map-container'
-            center={center}
-            zoom={10}
-          ></GoogleMap>
-        ) : (
-          <></>
-        )}
         <p> {description} </p>
         <section>
           It is a long established fact that a reader will be distracted by the

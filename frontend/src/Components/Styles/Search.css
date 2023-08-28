@@ -30,6 +30,16 @@
   flex-direction: column;
 }
 
+.seach-results-container {
+  display: flex;
+  flex-direction: column;
+}
+.search-results-header {
+  font-weight: 900;
+  font-size: 3rem;
+  padding-left: 20px;
+}
+
 .search-results {
   display: flex;
   align-items: end;

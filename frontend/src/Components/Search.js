@@ -54,6 +54,7 @@ export const Search = () => {
 
     if (filteredEventsByLocation.length >= 1) {
       setEvents(filteredEventsByLocation);
+      setCategorie(`Events in ${locale.city}, ${locale.state}`);
       return;
     }
   };
@@ -66,6 +67,8 @@ export const Search = () => {
 
     if (filteredEventsByPromoter.length >= 1) {
       setEvents(filteredEventsByPromoter);
+      setCategorie(`Events by ${targetPromoter}`);
+
       return;
     }
   };
@@ -80,6 +83,7 @@ export const Search = () => {
       });
       if (filteredEventsByCategory.length >= 1) {
         setEvents(filteredEventsByCategory);
+        setCategorie('Performing/Visual Arts');
         return;
       }
     }
@@ -89,6 +93,7 @@ export const Search = () => {
     });
     if (filteredEventsByCategory.length >= 1) {
       setEvents(filteredEventsByCategory);
+      setCategorie(`${category}`);
       return;
     }
   };
@@ -205,14 +210,20 @@ export const Search = () => {
             </div>
           </div>
         </div>
-        <div className='search-results'>
-          {events.length >= 1 ? (
-            events.map((item) => {
-              return <EventCard event={item} />;
-            })
-          ) : (
-            <div>No Events Available</div>
-          )}
+
+        <div className='seach-results-container'>
+          <div>
+            <h1 className='search-results-header'>{categorie}</h1>
+          </div>
+          <div className='search-results'>
+            {events.length >= 1 ? (
+              events.map((item) => {
+                return <EventCard event={item} />;
+              })
+            ) : (
+              <div>No Events Available</div>
+            )}
+          </div>
         </div>
       </div>
     </div>
