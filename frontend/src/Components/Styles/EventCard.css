@@ -1,26 +1,59 @@
 .event-card-container {
+  width: 225px;
   border-radius: 10%;
-  margin: 15px 5px 15px 5px;
+  margin: 15px 20px 15px 20px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+.event-card-container:hover {
+  transform: scale(1);
+  animation: pulse 2s infinite;
+  box-shadow:
+    rgba(0, 255, 42, 0.25) 0px 50px 100px -20px,
+    rgba(9, 255, 0, 0.3) 0px 30px 60px -30px,
+    rgba(255, 0, 0, 0.35) 0px -2px 6px 0px inset;
+}
 
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
 .card-img {
-  background-color: aqua;
-  height: 9rem;
+  height: 175px;
+  object-fit: fill;
+  border: 1px solid black;
   border-top-right-radius: 10%;
   border-top-left-radius: 10%;
-  height: 150px;
-  background-image: url("../../../public/images/hip-hop-concert-flyer-english-500020135.png");
+  background-image: url('../../../public/images/hip-hop-concert-flyer-english-500020135.png');
   background-size: cover;
 }
+
+.card-body-event-name {
+  text-align: center;
+  background-color: #001d4a;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: white;
+}
 .card-body {
-  width: 200px;
-  height: 250px;
-  padding-left: 10px;
-  padding-right: 10px;
+  border: 1px solid black;
+  border-bottom-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+  height: 275px;
   background-image: linear-gradient(rgb(227, 219, 219), white);
 }
 
@@ -29,6 +62,7 @@
 }
 
 .card-body p {
+  word-wrap: break-word;
   font-weight: 300;
 }
 

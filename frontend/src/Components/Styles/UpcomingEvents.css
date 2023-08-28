@@ -11,10 +11,10 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
   flex-wrap: wrap;
 }
 
 .upcoming-events-header {
   text-align: left;
+  font-family: 'Times New Roman', Times, serif;
 }

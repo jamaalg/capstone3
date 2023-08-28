@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
-import { EventCard } from "./EventCard.js";
-import "./Styles/Search.css";
-import "react-datepicker/dist/react-datepicker.css";
-import { Dropdown } from "react-bootstrap";
-import axios from "axios";
+import React, { useEffect, useState, useContext } from 'react';
+import DatePicker from 'react-datepicker';
+import { EventCard } from './EventCard.js';
+import './Styles/Search.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Dropdown } from 'react-bootstrap';
+import { DataContext } from './context/DataContext.js';
+import axios from 'axios';
 
 export const Search = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [promoters, setPromoters] = useState([]);
-  const [promoter, setPromoter] = useState("");
+  const [promoter, setPromoter] = useState('');
   const [locations, setLocations] = useState([]);
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState('');
   const [categories, setCategories] = useState([]);
-  const [categorie, setCategorie] = useState("");
+  const [categorie, setCategorie] = useState('');
+  const [allEvents, setAllEvents] = useState([]);
   const [events, setEvents] = useState([]);
   const [dates, setDates] = useState([]);
+  const d = useContext(DataContext);
 
   useEffect(() => {
     getInfo();
@@ -23,72 +26,92 @@ export const Search = () => {
 
   const getInfo = async () => {
     const response = await axios
-      .get("http://localhost:4000/")
+      .get('http://localhost:4000/')
       .then((res) => res.data);
     setPromoters(response.promoters);
-    setEvents(response.events);
-    setCategories(response.categories);
+    setAllEvents(response.events);
     setDates(response.date);
-
     setLocations(response.locations);
-
     console.log(response);
   };
 
   const handleLocationClick = (event) => {
-    console.log(event);
-    let locationData = locations.filter((location) => {
-      return location.name === event.target.dataset.id;
+    const targetLocation = event.target.dataset.id.split(', ');
+    const locale = {
+      city: targetLocation[0],
+      state: targetLocation[1],
+    };
+    console.log(location);
+
+    let filteredEventsByLocation = allEvents.filter((event) => {
+      return (
+        event.location.state === locale.state &&
+        event.location.city === locale.city
+      );
     });
 
-    console.log(locationData);
-    setLocation(locationData);
+    if (filteredEventsByLocation.length >= 1) {
+      setEvents(filteredEventsByLocation);
+      return;
+    }
+  };
+
+  const handlePromoterClick = (event) => {
+    const targetPromoter = event.target.dataset.id;
+    let filteredEventsByPromoter = allEvents.filter((event) => {
+      return event.promoter === targetPromoter;
+    });
+
+    if (filteredEventsByPromoter.length >= 1) {
+      setEvents(filteredEventsByPromoter);
+      return;
+    }
   };
 
   return (
     <div>
-      <div className="search-box-container">
-        <input className="search-bar" type="search"></input>
+      <div className='search-box-container'>
+        <input className='search-bar' type='search'></input>
         <button>Search</button>
       </div>
-      <div className="search-main-container">
-        <div className="search-filters">
-          <div className="date-filter-container">
+      <div className='search-main-container'>
+        <div className='search-filters'>
+          <div className='date-filter-container'>
             <label>Date</label>
             <DatePicker
-              className="date-picker"
+              className='date-picker'
               selected={startDate}
               onChange={(date) => setStartDate(date)}
             />
           </div>
-          <div className="category-filter-container">
+          <div className='category-filter-container'>
             <label>Category</label>
-            <div className="radio-container">
-              <div className="individual-radio">
-                <input type="radio" name="category" value="Sports" />
+            <div className='radio-container'>
+              <div className='individual-radio'>
+                <input type='radio' name='category' value='Sports' />
                 <label>Sports</label>
               </div>
-              <div className="individual-radio">
-                <input type="radio" name="category" value="Theater" />
+              <div className='individual-radio'>
+                <input type='radio' name='category' value='Theater' />
                 <label>Theater</label>
               </div>
-              <div className="individual-radio">
-                <input type="radio" name="category" value="Business" />
+              <div className='individual-radio'>
+                <input type='radio' name='category' value='Business' />
                 <label>Business</label>
               </div>
-              <div className="individual-radio">
-                <input type="radio" name="category" value="Concerts" />
+              <div className='individual-radio'>
+                <input type='radio' name='category' value='Concerts' />
                 <label>Concerts</label>
               </div>
             </div>
           </div>
-          <div className="promoter-filter-container">
+          <div className='promoter-filter-container'>
             <label>Promoter</label>
             <Dropdown>
               <Dropdown.Toggle
-                className="search-button"
-                variant="success"
-                id="dropdown-basic"
+                className='search-button'
+                variant='success'
+                id='dropdown-basic'
               >
                 Promoter
               </Dropdown.Toggle>
@@ -96,7 +119,7 @@ export const Search = () => {
               <Dropdown.Menu>
                 {promoters.map((p) => {
                   return (
-                    <Dropdown.Item data-id={p} onClick={handleLocationClick}>
+                    <Dropdown.Item data-id={p} onClick={handlePromoterClick}>
                       {p}
                     </Dropdown.Item>
                   );
@@ -104,15 +127,15 @@ export const Search = () => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div className="location-filter-container">
-            <div className="dropdown-container">
+          <div className='location-filter-container'>
+            <div className='dropdown-container'>
               <label>Location</label>
 
               <Dropdown>
                 <Dropdown.Toggle
-                  className="search-button"
-                  variant="success"
-                  id="dropdown-basic"
+                  className='search-button'
+                  variant='success'
+                  id='dropdown-basic'
                 >
                   Locations
                 </Dropdown.Toggle>
@@ -133,10 +156,14 @@ export const Search = () => {
             </div>
           </div>
         </div>
-        <div className="search-results">
-          {events.map((item) => {
-            return <EventCard event={item} />;
-          })}
+        <div className='search-results'>
+          {d.events.length >= 1 ? (
+            d.events.map((item) => {
+              return <EventCard event={item} />;
+            })
+          ) : (
+            <div>No Events Available</div>
+          )}
         </div>
       </div>
     </div>

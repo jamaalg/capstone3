@@ -11,6 +11,23 @@ export const getValues = async (req, res, next) => {
     }
 }
 
+export const getAllEvents = async (req, res, next) => {
+    try {
+        const events = await Event.find()
+        res.send(events)
+    } catch (error) {
+        throw new Error('Error fetching events.')
+    }
+}
+
+export const getAllCategories = async (req, res, next) => {
+    try {
+        res.send(fake.categories)
+    } catch (error) {
+        throw new Error('Error fetching events.')
+    }
+}
+
 export const getDataForSearchPage = async () => {
     try {
         const results = await Event.find()
