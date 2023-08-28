@@ -31,15 +31,26 @@ export const Form = () => {
         >
           {/* register your input into the hook by invoking the "register" function */}
           <label>Name</label>
-          <input defaultValue="" {...register("example")} />
+          <input
+            className="form-input"
+            defaultValue=""
+            {...register("example")}
+          />
 
           {/* include validation with required or other standard HTML validation rules */}
           <label>Address</label>
-          <input {...register("exampleRequired", { required: true })} />
+          <input
+            className="form-input"
+            {...register("exampleRequired", { required: true })}
+          />
 
           {/* register your input into the hook by invoking the "register" function */}
           <label>Phone Number</label>
-          <input defaultValue="" {...register("example")} />
+          <input
+            className="form-input"
+            defaultValue=""
+            {...register("example")}
+          />
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <span>This field is required</span>}
 
@@ -52,7 +63,7 @@ export const Form = () => {
             <option value="5">5</option>
           </select>
 
-          <input type="submit" />
+          <input className="form-input" type="submit" />
         </form>
       </div>
     </div>
