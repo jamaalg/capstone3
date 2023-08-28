@@ -12,10 +12,12 @@ export const EventCard = ({ event }) => {
   return (
     <div className='event-card-container'>
       <div className='card-img'></div>
-      <Link to='/event/:id' state={{ eventData: event }}>
-        <h6 className='card-body-event-name'>{event.name}</h6>
-      </Link>
       <div className='card-body'>
+        <div>
+          <Link to='/event/:id' state={{ eventData: event }}>
+            <h6 className='card-body-event-name'>{event.name}</h6>
+          </Link>
+        </div>
         <p className='card-body-event-promoter'>
           <span className='card-icon'>
             <FontAwesomeIcon icon={faEye} />
@@ -28,7 +30,6 @@ export const EventCard = ({ event }) => {
           </span>
           {event.location.city}, {event.location.state}{' '}
         </p>
-
         <p className='card-body-event-date'>
           <span className='card-icon'>
             <FontAwesomeIcon icon={faCalendarDays} />

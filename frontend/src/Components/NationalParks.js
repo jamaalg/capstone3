@@ -1,15 +1,14 @@
-import "./Styles/NationalParks.css";
-import { parktype, locations, nationalparks } from "../Data/data";
-import Dropdown from "react-bootstrap/Dropdown";
-import { useState } from "react";
-import { Radio } from "react-bootstrap";
-import { Card } from "./Card";
-import { ParksHero } from "./ParksHero";
-import { Footer } from "./Footer";
+import './Styles/NationalParks.css';
+import { parktype, locations, nationalparks } from '../Data/data';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useState } from 'react';
+import { Radio } from 'react-bootstrap';
+import { ParksHero } from './ParksHero';
+import { Footer } from './Footer';
 
 export const NationalParks = () => {
   //this useState is to track query value
-  const [parkQueryValue, setParkQueryValue] = useState("");
+  const [parkQueryValue, setParkQueryValue] = useState('');
 
   //this useState is to track store the results of the array filtering
 
@@ -34,12 +33,12 @@ export const NationalParks = () => {
     setParkQueryValue(event.target.dataset.id);
   };
   return (
-    <div className="App">
+    <div className='App'>
       <ParksHero></ParksHero>
       <div>
         <input
-          type="radio"
-          name="filterbtn"
+          type='radio'
+          name='filterbtn'
           checked={false === filterselect}
           onChange={(event) => {
             setfilterselect(false);
@@ -49,8 +48,8 @@ export const NationalParks = () => {
       </div>
       <div>
         <input
-          type="radio"
-          name="filterbtn"
+          type='radio'
+          name='filterbtn'
           checked={true === filterselect}
           onChange={(event) => {
             setfilterselect(true);
@@ -60,7 +59,7 @@ export const NationalParks = () => {
       </div>
       {filterselect ? (
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant='success' id='dropdown-basic'>
             Park Type
           </Dropdown.Toggle>
 
@@ -70,7 +69,7 @@ export const NationalParks = () => {
                 <Dropdown.Item
                   onClick={filterParkType}
                   data-id={park}
-                  href="#/action-1"
+                  href='#/action-1'
                 >
                   {park}
                 </Dropdown.Item>
@@ -80,7 +79,7 @@ export const NationalParks = () => {
         </Dropdown>
       ) : (
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant='success' id='dropdown-basic'>
             Locations
           </Dropdown.Toggle>
 
@@ -96,17 +95,9 @@ export const NationalParks = () => {
         </Dropdown>
       )}
 
-      <div className="parks-card-container">
-        <div className="park-query-value">{parkQueryValue}</div>
-        <div className="park-query-data-container">
-          {filterselect
-            ? parkQueryResults.map((parkQueryResult) => (
-                <Card park={parkQueryResult} />
-              ))
-            : locationQueryResults.map((locationQueryResult) => (
-                <Card park={locationQueryResult} />
-              ))}
-        </div>
+      <div className='parks-card-container'>
+        <div className='park-query-value'>{parkQueryValue}</div>
+        <div className='park-query-data-container'></div>
       </div>
       <Footer />
     </div>

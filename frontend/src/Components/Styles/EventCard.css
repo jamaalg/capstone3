@@ -33,24 +33,27 @@
   }
 }
 .card-img {
-  height: 9rem;
+  height: 175px;
+  object-fit: fill;
+  border: 1px solid black;
   border-top-right-radius: 10%;
   border-top-left-radius: 10%;
-  height: 150px;
   background-image: url('../../../public/images/hip-hop-concert-flyer-english-500020135.png');
   background-size: cover;
 }
 
 .card-body-event-name {
   text-align: center;
-  overflow-wrap: break-word;
   background-color: #001d4a;
-  padding: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: white;
 }
 .card-body {
-  padding-left: 10px;
-  padding-right: 10px;
+  border: 1px solid black;
+  border-bottom-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+  height: 275px;
   background-image: linear-gradient(rgb(227, 219, 219), white);
 }
 

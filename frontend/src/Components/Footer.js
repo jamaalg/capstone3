@@ -1,4 +1,3 @@
-import { Card2 } from './Card2';
 import './Styles/Footer.css';
 
 export const Footer = () => {
