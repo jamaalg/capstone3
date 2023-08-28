@@ -45,6 +45,7 @@ const data = [
 ];
 export const Home = () => {
   const [shouldUpdate, setShouldUpdate] = useState(true);
+
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
 
