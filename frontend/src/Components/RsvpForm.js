@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import "./Styles/Form.css";
 
-export const Form = () => {
+export const RsvpForm = () => {
   const {
     register,
     handleSubmit,

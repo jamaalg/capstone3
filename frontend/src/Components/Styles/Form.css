@@ -11,6 +11,8 @@
   width: 75%;
   display: flex;
   justify-content: center;
+
+
 }
 
 .form-fields-container {
@@ -20,8 +22,11 @@
   align-items: center;
 }
 
-.className="form-input" {
+.form-input {
   width: 300px;
+  border-radius: 100px;
+  border-color: transparent;
+  
 }
 
 select {

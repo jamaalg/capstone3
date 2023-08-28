@@ -3,7 +3,7 @@ import { Home } from "./Components/Home.js";
 import { Search } from "./Components/Search.js";
 import { Rsvp } from "./Components/Rsvp.js";
 import { Event } from "./Components/Event.js";
-import { Form } from "./Components/Form";
+import { RsvpForm } from "./Components/RsvpForm";
 import { NotFound } from "./Components/NotFound";
 import axios from "axios";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
@@ -95,8 +95,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/event/:id" element={<Event />} />
-            <Route path="/rsvp" element={<Form />} />
-            <Route path="/form" element={<Form />} />
+            
+            <Route path="/rsvpform" element={<RsvpForm />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Outlet />

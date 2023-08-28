@@ -1,8 +1,12 @@
-import { useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import { Hero } from './Hero';
 import { useState, useCallback, useEffect } from 'react';
 import './Styles/Event.css';
 import axios from 'axios';
+import { RsvpForm } from './RsvpForm.js';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 import {
   GoogleMap,
   useJsApiLoader,
@@ -66,6 +70,17 @@ export const Event = () => {
   useEffect(() => {
     getGeoLocationCoordinates();
   }, []);
+  
+  
+  const handleRSVP = () => {
+    console.log('RSVP Handler');
+  };
+
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <div>
@@ -80,15 +95,7 @@ export const Event = () => {
         <p className='event-date'>{date}</p>
         <h6> {promoter}</h6>
         <h2 className='event-title'>{name}</h2>
-        {!isLoaded ? (
-          <GoogleMap
-            mapContainerClassName='map-container'
-            center={center}
-            zoom={10}
-          ></GoogleMap>
-        ) : (
-          <></>
-        )}
+        
         <p> {description} </p>
         <section>
           It is a long established fact that a reader will be distracted by the
@@ -101,7 +108,27 @@ export const Event = () => {
           infancy. Various versions have evolved over the years, sometimes by
           accident, sometimes on purpose (injected humour and the like).
         </section>
-        <button className='event-submit-button'>RSVP</button>
+        <button onClick={handleShow} className='event-submit-button'>RSVP</button>
+      
+       <div
+      className="modal show"
+      style={{ display: 'block', position: 'initial' }}
+    >
+       <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className='modal-container'  ><RsvpForm/>  </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
       </div>
       <div className='footer-container'></div>
     </div>

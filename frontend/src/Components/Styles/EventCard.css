@@ -50,9 +50,10 @@
 }
 .card-body {
   border-bottom-right-radius: 10%;
-  border-bottom-left-radius: 10%;
-  height: 275px;
+  border-bottom-left-radius: 10%;  
   background-image: linear-gradient(rgb(227, 219, 219), white);
+  height: 275px;
+
 }
 
 .card-body h6 {
