@@ -32,7 +32,9 @@ export const Search = () => {
     setAllEvents(response.events);
     setDates(response.date);
     setLocations(response.locations);
-    console.log(response);
+    setEvents(allEvents);
+
+    console.log('Getting Info for page.');
   };
 
   const handleLocationClick = (event) => {
@@ -68,6 +70,33 @@ export const Search = () => {
     }
   };
 
+  const handleCategoryClick = async (event) => {
+    let category = event.target.value;
+
+    if (category === 'Theater') {
+      category = 'Performing/Visual Arts';
+      let filteredEventsByCategory = allEvents.filter((event) => {
+        return event.category === category;
+      });
+      if (filteredEventsByCategory.length >= 1) {
+        setEvents(filteredEventsByCategory);
+        return;
+      }
+    }
+
+    let filteredEventsByCategory = allEvents.filter((event) => {
+      return event.category === category;
+    });
+    if (filteredEventsByCategory.length >= 1) {
+      setEvents(filteredEventsByCategory);
+      return;
+    }
+  };
+
+  const handleDateSelection = () => {
+    console.log('Selection Handler');
+  };
+
   return (
     <div>
       <div className='search-box-container'>
@@ -88,19 +117,39 @@ export const Search = () => {
             <label>Category</label>
             <div className='radio-container'>
               <div className='individual-radio'>
-                <input type='radio' name='category' value='Sports' />
+                <input
+                  type='radio'
+                  name='category'
+                  value='Sports'
+                  onClick={handleCategoryClick}
+                />
                 <label>Sports</label>
               </div>
               <div className='individual-radio'>
-                <input type='radio' name='category' value='Theater' />
+                <input
+                  type='radio'
+                  name='category'
+                  value='Theater'
+                  onClick={handleCategoryClick}
+                />
                 <label>Theater</label>
               </div>
               <div className='individual-radio'>
-                <input type='radio' name='category' value='Business' />
+                <input
+                  type='radio'
+                  name='category'
+                  value='Business'
+                  onClick={handleCategoryClick}
+                />
                 <label>Business</label>
               </div>
               <div className='individual-radio'>
-                <input type='radio' name='category' value='Concerts' />
+                <input
+                  type='radio'
+                  name='category'
+                  value='Concerts'
+                  onClick={handleCategoryClick}
+                />
                 <label>Concerts</label>
               </div>
             </div>
@@ -157,8 +206,8 @@ export const Search = () => {
           </div>
         </div>
         <div className='search-results'>
-          {d.events.length >= 1 ? (
-            d.events.map((item) => {
+          {events.length >= 1 ? (
+            events.map((item) => {
               return <EventCard event={item} />;
             })
           ) : (
