@@ -1,15 +1,16 @@
-import './App.css';
-import { Home } from './Components/Home.js';
-import { Search } from './Components/Search.js';
-import { Rsvp } from './Components/Rsvp.js';
-import { Event } from './Components/Event.js';
-import { NotFound } from './Components/NotFound';
-import axios from 'axios';
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { AuthContext } from './Components/context/AuthContext';
-import { DataContext } from './Components/context/DataContext';
-import { DataContextProvider } from './Components/context/DataContextProvider';
+import "./App.css";
+import { Home } from "./Components/Home.js";
+import { Search } from "./Components/Search.js";
+import { Rsvp } from "./Components/Rsvp.js";
+import { Event } from "./Components/Event.js";
+import { Form } from "./Components/Form";
+import { NotFound } from "./Components/NotFound";
+import axios from "axios";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { AuthContext } from "./Components/context/AuthContext";
+import { DataContext } from "./Components/context/DataContext";
+import { DataContextProvider } from "./Components/context/DataContextProvider";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -70,29 +71,33 @@ function App() {
       value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
     >
       <DataContextProvider>
-        <div className='App'>
-          <nav className='nav-container'>
-            <ul className='nav-list'>
+        <div className="App">
+          <nav className="nav-container">
+            <ul className="nav-list">
               <li>
-                <Link to='/'>Home </Link>
+                <Link to="/">Home </Link>
               </li>
               <li>
-                <Link to='/search'>Search </Link>
+                <Link to="/search">Search </Link>
               </li>
               <li>
-                <Link to='/event/:id'>Event </Link>
+                <Link to="/event/:id">Event </Link>
               </li>
+              {/* <li>
+                <Link to="/rsvp">Rsvp </Link>
+              </li> */}
               <li>
-                <Link to='/rsvp'>Rsvp </Link>
+                <Link to="/form">Form </Link>
               </li>
             </ul>
           </nav>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/search' element={<Search />} />
-            <Route path='/event/:id' element={<Event />} />
-            <Route path='/rsvp' element={<Rsvp />} />
-            <Route path='*' element={<NotFound />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/event/:id" element={<Event />} />
+            <Route path="/rsvp" element={<Form />} />
+            <Route path="/form" element={<Form />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Outlet />
         </div>
