@@ -65,6 +65,7 @@
 .individual-radio {
   display: flex;
   flex-direction: column;
+  padding: 5px;
 }
 
 .promoter-filter-container {
