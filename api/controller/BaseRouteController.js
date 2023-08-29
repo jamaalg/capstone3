@@ -1,7 +1,7 @@
 import { categories } from '../utils/data/categories.js'
 import { fake } from '../utils/fakeData.js'
 import { Event } from '../model/Event.js'
-
+import { getEventById } from './EventController.js'
 export const getValues = async (req, res, next) => {
     try {
         const distinctValues = await getDistinctValues()
@@ -47,3 +47,43 @@ const getDistinctValues = async () => {
     }
     return values
 }
+
+export const rsvpToEvent = async (req, res, next) => {
+    try {
+        //const results = await Event.find()
+        const { name, address, phoneNumber, tickets, eventId } = req.body
+        const event = await getEventById(eventId)
+
+        if (event.capacity === 0) {
+            res.send(`No tickets available.`)
+        }
+
+        if (tickets > event.capacity) {
+            res.send(
+                `Tickets requested(${tickets}) greater than event capacity.`
+            )
+        }
+
+        e
+        event.attendees.push(name)
+        event.capacity = event.capacity - tickets
+        console.log({
+            message: 'rsvp route called',
+            request: event,
+        })
+    } catch (error) {
+        throw new Error('Error rsvp to event')
+    }
+}
+
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * get the event with specific id
+ * increment the attendees by the amount of tickets
+ */

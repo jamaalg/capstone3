@@ -18,7 +18,7 @@ import {
 
 export const Event = () => {
   const eventData = useLocation();
-  const { _id, date, name, description, promoter, location } =
+  const { _id, date, name, description, promoter, location, ticketPrice } =
     eventData.state.eventData;
 
   const { isLoaded } = useJsApiLoader({
@@ -127,7 +127,7 @@ export const Event = () => {
               <Modal.Title>{name}</Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-container'>
-              <RsvpForm />{' '}
+              <RsvpForm ticketPrice={ticketPrice} eventId={_id} />{' '}
             </Modal.Body>
             <Modal.Footer>
               <Button variant='secondary' onClick={handleClose}>

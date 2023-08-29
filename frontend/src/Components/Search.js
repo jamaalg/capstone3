@@ -23,9 +23,20 @@ export const Search = () => {
   const d = useContext(DataContext);
   const [searchItem, setSearchItem] = useState('');
   const [filterSearchToggle, setFilterSearchToggle] = useState(true);
+
   useEffect(() => {
     getInfo();
   }, []);
+
+  useEffect(() => {
+    updateAllEvents();
+  }, [allEvents]);
+
+  const updateAllEvents = async (arg) => {
+    const response = await axios
+      .get('http://localhost:4000/getEvents')
+      .then((res) => setEvents(res.data));
+  };
 
   const handleInputChange = (e) => {
     const searchTerm = e.target.value;
@@ -37,6 +48,7 @@ export const Search = () => {
     setFilterSearchToggle(false);
     setEvents(filteredItems);
   };
+
   const getInfo = async () => {
     const response = await axios
       .get('http://localhost:4000/')
@@ -124,10 +136,7 @@ export const Search = () => {
 
   return (
     <div>
-      <SearchHero
-        setSearchTerm={setSearchItem}
-        handleInputChange={handleInputChange}
-      />
+      <SearchHero handleInputChange={handleInputChange} />
       <div className='search-main-container'>
         <div className='search-filters'>
           <div className='date-filter-container'>

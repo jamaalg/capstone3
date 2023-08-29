@@ -11,8 +11,6 @@
   width: 75%;
   display: flex;
   justify-content: center;
-
-
 }
 
 .form-fields-container {
@@ -26,7 +24,22 @@
   width: 300px;
   border-radius: 100px;
   border-color: transparent;
-  
+}
+
+.form-submit-btn {
+  width: 300px;
+  border-radius: 100px;
+  border-color: transparent;
+  background-color: green;
+  color: white;
+  background-color: #001d4a;
+}
+.form-submit-btn:hover {
+  width: 300px;
+  border-radius: 100px;
+  border-color: transparent;
+  background-color: green;
+  color: white;
 }
 
 select {

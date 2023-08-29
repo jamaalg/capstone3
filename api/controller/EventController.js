@@ -90,3 +90,11 @@ export const getCityState = async () => {
         state: input[1],
     }
 }
+
+export const getEventById = async (eventId) => {
+    try {
+        return await Event.findById(eventId)
+    } catch (err) {
+        console.error(err)
+    }
+}

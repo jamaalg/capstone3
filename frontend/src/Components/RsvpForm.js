@@ -1,7 +1,8 @@
-import { useForm } from "react-hook-form";
-import "./Styles/Form.css";
-
-export const RsvpForm = () => {
+import { useForm } from 'react-hook-form';
+import './Styles/RsvpForm.css';
+import { useState } from 'react';
+import axios from 'axios';
+export const RsvpForm = ({ ticketPrice, eventId }) => {
   const {
     register,
     handleSubmit,
@@ -9,61 +10,71 @@ export const RsvpForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const [ticketQuantity, setTicketQuantity] = useState(0);
+  const onSubmit = async (data) => {
+    await axios.post('http://localhost:4000/rsvp', { ...data, eventId });
+  };
 
-  console.log(watch("example")); // watch input value by passing the name of it
-
+  const setQuantity = async (op) => {
+    setTicketQuantity(op);
+    console.log(ticketQuantity);
+  };
   return (
-    <div className="rsvp-container">
-      <div className="image-container">
+    <div className='rsvp-container'>
+      <div className='image-container'>
         <img
-          className="rsvp-image"
-          src="../images/hip-hop-concert-flyer-english-443476958.png"
-          alt="painting of a man"
+          className='rsvp-image'
+          src='../images/hip-hop-concert-flyer-english-443476958.png'
+          alt='painting of a man'
         ></img>
       </div>
 
-      <div className="form-container">
+      <div className='form-container'>
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="form-fields-container"
+          className='form-fields-container'
         >
           {/* register your input into the hook by invoking the "register" function */}
           <label>Name</label>
-          <input
-            className="form-input"
-            defaultValue=""
-            {...register("example")}
-          />
+          <input className='form-input' defaultValue='' {...register('name')} />
 
           {/* include validation with required or other standard HTML validation rules */}
           <label>Address</label>
           <input
-            className="form-input"
-            {...register("exampleRequired", { required: true })}
+            className='form-input'
+            {...register('address', { required: true })}
           />
 
           {/* register your input into the hook by invoking the "register" function */}
           <label>Phone Number</label>
           <input
-            className="form-input"
-            defaultValue=""
-            {...register("example")}
+            className='form-input'
+            defaultValue=''
+            {...register('phoneNumber')}
           />
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <span>This field is required</span>}
 
           <label>Tickets</label>
-          <select>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+          <select
+            /*        value={ticketQuantity}
+            onChange={(option) => {
+              setTicketQuantity(option);
+            }} */
+            {...register('tickets', { required: true })}
+          >
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
           </select>
 
-          <input className="form-input" type="submit" />
+          <label> Total </label>
+          <p> {} </p>
+
+          <input className='form-submit-btn' type='submit' />
         </form>
       </div>
     </div>
