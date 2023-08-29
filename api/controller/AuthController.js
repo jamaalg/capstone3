@@ -5,10 +5,8 @@ import { User } from '../model/User.js'
 import { writeToFile } from './AdminUtilController.js'
 
 export const register = async (req, res, next) => {
-    const someOtherPlaintextPassword = 'not_bacon';
-    const saltRounds = 10;
-    const myPlaintextPassword = req.body.password;
-
+    const saltRounds = 10
+    const myPlaintextPassword = req.body.password
 
     //console.log(req.body)
 
@@ -19,10 +17,10 @@ export const register = async (req, res, next) => {
             password: hash,
             email: req.body.email,
             location: {
-                city: req.body.city,//.toUppercase(),
-                state: req.body.state//.toUppercase()
+                city: req.body.city, //.toUppercase(),
+                state: req.body.state, //.toUppercase()
             },
-            events: []
+            events: [],
         })
         writeToFile(req.body.username, myPlaintextPassword)
 
@@ -31,20 +29,18 @@ export const register = async (req, res, next) => {
         return await user
             .save()
             .then((user) => {
-                // await writeToFile(username, req.body.password)
+                console.log('User registered successfully')
                 return user
             })
             .catch((error) => {
                 if (error.code === 11000) {
-
                     return 'Username already exists, please use another username to register your account.'
                 }
                 throw new Error('An unknown error occured!')
             })
-    });
+    })
 
-    return 'User registered successfully'
-
+    res.send('Registered!')
 }
 
 export const registerFakeUser = async (userParam) => {

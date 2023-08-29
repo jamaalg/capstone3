@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './Styles/Login.css';
 
 export const Login = () => {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    auth.login();
+    navigate('/profile');
+  };
   console.log(errors);
 
   return (
