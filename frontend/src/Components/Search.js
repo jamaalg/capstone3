@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import DatePicker from 'react-datepicker';
+import { Footer } from './Footer.js';
 import { EventCard } from './EventCard.js';
 import './Styles/Search.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Dropdown } from 'react-bootstrap';
 import { DataContext } from './context/DataContext.js';
+import { SearchHero } from './SearchHero.js';
 import axios from 'axios';
 
 export const Search = () => {
@@ -19,11 +21,22 @@ export const Search = () => {
   const [events, setEvents] = useState([]);
   const [dates, setDates] = useState([]);
   const d = useContext(DataContext);
-
+  const [searchItem, setSearchItem] = useState('');
+  const [filterSearchToggle, setFilterSearchToggle] = useState(true);
   useEffect(() => {
     getInfo();
   }, []);
 
+  const handleInputChange = (e) => {
+    const searchTerm = e.target.value;
+    setSearchItem(searchTerm);
+
+    const filteredItems = allEvents.filter((event) =>
+      event.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilterSearchToggle(false);
+    setEvents(filteredItems);
+  };
   const getInfo = async () => {
     const response = await axios
       .get('http://localhost:4000/')
@@ -55,6 +68,8 @@ export const Search = () => {
     if (filteredEventsByLocation.length >= 1) {
       setEvents(filteredEventsByLocation);
       setCategorie(`Events in ${locale.city}, ${locale.state}`);
+      setFilterSearchToggle(true);
+
       return;
     }
   };
@@ -68,6 +83,7 @@ export const Search = () => {
     if (filteredEventsByPromoter.length >= 1) {
       setEvents(filteredEventsByPromoter);
       setCategorie(`Events by ${targetPromoter}`);
+      setFilterSearchToggle(true);
 
       return;
     }
@@ -84,6 +100,8 @@ export const Search = () => {
       if (filteredEventsByCategory.length >= 1) {
         setEvents(filteredEventsByCategory);
         setCategorie('Performing/Visual Arts');
+        setFilterSearchToggle(true);
+
         return;
       }
     }
@@ -94,6 +112,8 @@ export const Search = () => {
     if (filteredEventsByCategory.length >= 1) {
       setEvents(filteredEventsByCategory);
       setCategorie(`${category}`);
+      setFilterSearchToggle(true);
+
       return;
     }
   };
@@ -104,10 +124,10 @@ export const Search = () => {
 
   return (
     <div>
-      <div className='search-box-container'>
-        <input className='search-bar' type='search'></input>
-        <button>Search</button>
-      </div>
+      <SearchHero
+        setSearchTerm={setSearchItem}
+        handleInputChange={handleInputChange}
+      />
       <div className='search-main-container'>
         <div className='search-filters'>
           <div className='date-filter-container'>
@@ -213,7 +233,9 @@ export const Search = () => {
 
         <div className='seach-results-container'>
           <div>
-            <h1 className='search-results-header'>{categorie}</h1>
+            <h1 className='search-results-header'>
+              {filterSearchToggle ? categorie : `Search: ${searchItem}`}
+            </h1>
           </div>
           <div className='search-results'>
             {events.length >= 1 ? (
@@ -226,6 +248,7 @@ export const Search = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

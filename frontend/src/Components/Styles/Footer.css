@@ -1,6 +1,20 @@
-.footer-container{
+.footer-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  background-color: #001d4a;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
+.sub-container {
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 250px;
+  margin: 20px;
+  color: white;
+}
+
+.list {
+  list-style: none;
+}

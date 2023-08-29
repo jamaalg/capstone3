@@ -13,11 +13,10 @@ export const EventCard = ({ event }) => {
     <div className='event-card-container'>
       <div className='card-img'></div>
       <div className='card-body'>
-        <div>
-          <Link to='/event/:id' state={{ eventData: event }}>
-            <h6 className='card-body-event-name'>{event.name}</h6>
-          </Link>
-        </div>
+        <Link to='/event/:id' state={{ eventData: event }}>
+          <h6 className='card-body-event-name'>{event.name}</h6>
+        </Link>
+
         <p className='card-body-event-promoter'>
           <span className='card-icon'>
             <FontAwesomeIcon icon={faEye} />

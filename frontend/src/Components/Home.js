@@ -1,5 +1,5 @@
 import './Styles/Home.css';
-import { Hero } from './Hero';
+import { HomeHero } from './HomeHero';
 import { CardRound } from './CardRound';
 import { Footer } from './Footer';
 import { UpcomingEvents } from './UpcomingEvents';
@@ -86,7 +86,7 @@ export const Home = () => {
 
   return (
     <div className='home-container'>
-      <Hero />
+      <HomeHero />
       <div className='categories-container'>
         {categories.map((c) => (
           <CardRound key={c} categorie={c} />

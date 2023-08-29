@@ -37,7 +37,7 @@
   object-fit: fill;
   border-top-right-radius: 10%;
   border-top-left-radius: 10%;
-  background-image: url("../../../public/images/hip-hop-concert-flyer-english-500020135.png");
+  background-image: url('../../../public/images/hip-hop-concert-flyer-english-500020135.png');
   background-size: cover;
 }
 
@@ -50,10 +50,9 @@
 }
 .card-body {
   border-bottom-right-radius: 10%;
-  border-bottom-left-radius: 10%;  
+  border-bottom-left-radius: 10%;
   background-image: linear-gradient(rgb(227, 219, 219), white);
   height: 275px;
-
 }
 
 .card-body h6 {
@@ -67,4 +66,8 @@
 
 .card-icon {
   margin-right: 5px;
+}
+
+.card-body-event-promoter {
+  font-style: italic;
 }

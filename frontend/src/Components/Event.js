@@ -6,7 +6,7 @@ import axios from 'axios';
 import { RsvpForm } from './RsvpForm.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import { Footer } from './Footer';
 import {
   GoogleMap,
   useJsApiLoader,
@@ -66,7 +66,6 @@ export const Event = () => {
     }
   };
 
-  const Google = new GoogleMap();
   useEffect(() => {
     getGeoLocationCoordinates();
     console.log(eventData);
@@ -82,7 +81,7 @@ export const Event = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <div>
+    <div className='master-container'>
       <div className='image-container'>
         <img
           className='event-image'
@@ -91,29 +90,29 @@ export const Event = () => {
       </div>
 
       <div className='event-info-container'>
+        <br />
+        <hr width='65%' color='black' />
+        <p className='event-promoter'> {promoter}</p>
+        <p className='event-title'>{name}</p>
+
         <p className='event-date'>{date}</p>
-        <h6> {promoter}</h6>
-        <h2 className='event-title'>{name}</h2>
-        {!isLoaded ? (
-          <GoogleMap
-            mapContainerClassName='map-container'
-            center={center}
-            zoom={10}
-          ></GoogleMap>
-        ) : (
-          <></>
-        )}
-        <p> {description} </p>
-        <section>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using 'Content here, content here', making it
-          look like readable English. Many desktop publishing packages and web
-          page editors now use Lorem Ipsum as their default model text, and a
-          search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
+
+        <p> </p>
+        <section className='event-description'>
+          <p> {description}</p>
+          <br />
+          <p>
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout. The point
+            of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content
+            here', making it look like readable English. Many desktop publishing
+            packages and web page editors now use Lorem Ipsum as their default
+            model text, and a search for 'lorem ipsum' will uncover many web
+            sites still in their infancy. Various versions have evolved over the
+            years, sometimes by accident, sometimes on purpose (injected humour
+            and the like).
+          </p>
         </section>
         <button onClick={handleShow} className='event-submit-button'>
           RSVP
@@ -141,7 +140,7 @@ export const Event = () => {
           </Modal>
         </div>
       </div>
-      <div className='footer-container'></div>
+      <Footer />
     </div>
   );
 };

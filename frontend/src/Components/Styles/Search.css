@@ -99,3 +99,7 @@
   align-content: center;
   padding-top: 20px;
 }
+
+label {
+  font-weight: 600;
+}
