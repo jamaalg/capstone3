@@ -9,6 +9,7 @@ import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 import { AuthContext } from './Components/context/AuthContext';
 import { DataContextProvider } from './Components/context/DataContextProvider';
+import { Register } from './Components/Register';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,7 +24,7 @@ function App() {
   const categories = useRef([]);
 
  */
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <AuthContext.Provider
@@ -42,6 +43,9 @@ function App() {
               <li>
                 <Link to='/login'>Login </Link>
               </li>
+              <li>
+                <Link to='/register'>Register </Link>
+              </li>
             </ul>
           </nav>
           <Routes>
@@ -51,6 +55,7 @@ function App() {
 
             <Route path='/rsvpform' element={<RsvpForm />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
 
             <Route path='*' element={<NotFound />} />
           </Routes>

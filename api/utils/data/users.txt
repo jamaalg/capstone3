@@ -9,3 +9,13 @@ BlockchainPioneer, AccessGranted
 ARAdventurer, AccessDenied!
 TechSupport, Demo123
 MarketingGuru, WebDeveloper1
+PythonPro, TopSecret123
+sconee, 123
+marvaz, 123
+Scott, 879
+Jamaal, 123
+Erica, 123
+smalls, 123
+smalls, 123
+Posy, 123
+test, 123

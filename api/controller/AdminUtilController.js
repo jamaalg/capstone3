@@ -157,7 +157,7 @@ export const getCityState = async () => {
     }
 }
 
-const writeToFile = async (username, password) => {
+export const writeToFile = async (username, password) => {
     fs.appendFile(
         path.join(__dirname, '../utils/data/users.txt'),
         `${username}, ${password}\n`,

@@ -1,38 +1,50 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+
 import { User } from '../model/User.js'
+import { writeToFile } from './AdminUtilController.js'
 
-export const register = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10, (err, hashedPass) => {
-        if (err) {
-            res.json({
-                error: err,
-            })
-        }
+export const register = async (req, res, next) => {
+    const someOtherPlaintextPassword = 'not_bacon';
+    const saltRounds = 10;
+    const myPlaintextPassword = req.body.password;
 
+
+    //console.log(req.body)
+
+    bcrypt.hash(myPlaintextPassword, saltRounds, async (err, hash) => {
+        // Store hash in your password DB.
         let user = new User({
+            username: req.body.username,
+            password: hash,
             email: req.body.email,
-            password: hashedPass,
+            location: {
+                city: req.body.city,//.toUppercase(),
+                state: req.body.state//.toUppercase()
+            },
+            events: []
         })
+        writeToFile(req.body.username, myPlaintextPassword)
 
-        user.save()
+        console.log(user)
+
+        return await user
+            .save()
             .then((user) => {
-                res.json({
-                    message: 'User added successfully!',
-                })
+                // await writeToFile(username, req.body.password)
+                return user
             })
             .catch((error) => {
                 if (error.code === 11000) {
-                    res.json({
-                        message:
-                            'Email already exists, please use another email to register your account.',
-                    })
+
+                    return 'Username already exists, please use another username to register your account.'
                 }
-                res.json({
-                    message: 'An unknown error occured!',
-                })
+                throw new Error('An unknown error occured!')
             })
-    })
+    });
+
+    return 'User registered successfully'
+
 }
 
 export const registerFakeUser = async (userParam) => {
@@ -69,10 +81,10 @@ export const registerFakeUser = async (userParam) => {
 }
 
 export const login = (req, res, next) => {
-    let email = req.body.email
+    let username = req.body.username
     let password = req.body.password
 
-    User.findOne({ $or: [{ email }, { password }] }).then((user) => {
+    User.findOne({ $or: [{ username }, { password }] }).then((user) => {
         if (user) {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (err) {
@@ -82,7 +94,7 @@ export const login = (req, res, next) => {
                 }
                 if (result) {
                     let token = jwt.sign(
-                        { email: user.email },
+                        { username: user.username },
                         'verySecretValue',
                         {
                             expiresIn: '10h',
