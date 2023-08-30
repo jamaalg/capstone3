@@ -1,0 +1,74 @@
+.video-bg-login {
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  object-fit: cover;
+  filter: opacity(60%);
+  z-index: -1;
+}
+
+.login-form {
+  border-radius: 25%;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  font-size: 20px;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  letter-spacing: 5px;
+  padding: 100px;
+  opacity: 0.9;
+}
+
+.form-input {
+  border-radius: 20px;
+  color: black;
+  border: 0.5px black solid;
+}
+
+.login-header {
+  font-size: 50px;
+  font-weight: 900;
+  color: black;
+  padding-bottom: 15%;
+}
+label {
+  color: black;
+}
+
+.login-submit-btn {
+  border-radius: 20px;
+  background-color: #001d4a;
+  color: white;
+  padding: 5px;
+}
+
+.login-submit-btn:hover {
+  background-color: #004a36;
+  color: white;
+  border-radius: 20px;
+}
+
+.password-input {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-main-container {
+  margin-bottom: 25px;
+}
+
+.username-container {
+  margin-bottom: 10px;
+}
+
+.username-label-container {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}

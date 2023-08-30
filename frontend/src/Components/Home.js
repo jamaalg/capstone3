@@ -5,49 +5,17 @@ import { Footer } from './Footer';
 import { UpcomingEvents } from './UpcomingEvents';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from './context/DataContext';
-import axios from 'axios';
-const data = [
-  {
-    name: 'bob',
-    ticketprice: '76',
-    attendees: '5',
-    location: 'chicago',
-    date: 'august 5',
-  },
-  {
-    name: 'tina',
-    ticketprice: '76',
-    attendees: '5',
-    location: 'chicago',
-    date: 'august 5',
-  },
-  {
-    name: 'bob',
-    ticketprice: '76',
-    attendees: '5',
-    location: 'chicago',
-    date: 'august 5',
-  },
-  {
-    name: 'bob',
-    ticketprice: '76',
-    attendees: '5',
-    location: 'chicago',
-    date: 'august 5',
-  },
-  {
-    name: 'bob',
-    ticketprice: '76',
-    attendees: '5',
-    location: 'chicago',
-    date: 'august 5',
-  },
-];
+
 export const Home = () => {
   const [shouldUpdate, setShouldUpdate] = useState(true);
 
   const [events, setEvents] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([
+    'Sports',
+    'Concerts',
+    'Business',
+    'Performing/Visual Arts',
+  ]);
 
   const dataContext = useContext(DataContext);
 
@@ -81,7 +49,7 @@ export const Home = () => {
       dataContext: dataContext,
     });
     setEvents(dataContext.events.current);
-    setCategories(dataContext.categories.current);
+    //setCategories(dataContext.categories.current);
   }, []);
 
   return (
