@@ -11,6 +11,7 @@ import {
     getRandomDuration,
     getRandomTime,
 } from '../utils/generators.js'
+
 export const getEvents = async (req, res, next) => {
     const results = await Event.find()
     console.log(results)
@@ -94,6 +95,32 @@ export const getCityState = async () => {
 export const getEventById = async (eventId) => {
     try {
         return await Event.findById(eventId)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const getEventsByDate = async (req, res, next) => {
+    try {
+        let requestedDate = req.body.date
+        const response = await Event.find({ date: requestedDate })
+        console.log(response)
+        res.send(response)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const getUpcomingEvents = async (req, res, next) => {
+    try {
+        let currentDate = req.body.date
+        const response = await Event.find({})
+            .sort({
+                date: 1,
+            })
+            .limit(20)
+        console.log(response)
+        res.send(response)
     } catch (err) {
         console.error(err)
     }
