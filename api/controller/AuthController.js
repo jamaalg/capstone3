@@ -78,37 +78,45 @@ export const registerFakeUser = async (userParam) => {
 
 export const login = async (req, res, next) => {
     try {
-        let usernameParam = req.body.username
-        let passwordParam = req.body.password
+        const { username, password } = req.body
 
+        const mypass = password
         console.log(req.body)
 
-        const user = await getUser(usernameParam)
+        const user = await getUser(username)
 
-        bcrypt.compare(passwordParam, user.password, async (err, result) => {
-            console.log('Comparing password in bcrypt')
-            if (err) {
-                res.send('Error logging in')
-            }
+        console.log('Comparing password in bcrypt')
+        const match = await bcrypt.compare(mypass, user[0].password)
 
+        if (match) {
             let token = jwt.sign(
-                { username: user.username },
+                { username: user[0].username },
                 'verySecretValue',
                 {
                     expiresIn: '10h',
                 }
             )
 
-            return { message: 'Login successful', token, user }
-        })
+            res.json({
+                message: 'Login successful',
+                token,
+                userData: user[0],
+            })
+        } else {
+            res.json({
+                message: 'Login successfully',
+            })
+        }
     } catch (err) {
         console.error(err)
     }
 }
 
-export const getUser = async (usernameParam) => {
-    const user = await User.find({ username: usernameParam }).exec()
-    console.log(user)
-
-    return user
+export const getUser = async (username) => {
+    try {
+        const user = await User.find({ username }).exec()
+        return user
+    } catch (err) {
+        console.error(err)
+    }
 }

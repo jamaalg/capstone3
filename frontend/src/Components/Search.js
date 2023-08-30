@@ -258,7 +258,7 @@ export const Search = () => {
           <div className='search-results'>
             {events.length >= 1 ? (
               events.map((item) => {
-                return <EventCard event={item} />;
+                return <EventCard key={item._id} event={item} />;
               })
             ) : (
               <div>No Events Available</div>

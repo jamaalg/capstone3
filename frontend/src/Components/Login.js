@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from './context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -11,7 +11,7 @@ import axios from 'axios';
 export const Login = () => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const [token, setToken] = useState('');
   const {
     register,
     handleSubmit,
@@ -20,20 +20,26 @@ export const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const response = await axios.post('http://localhost:4000/api/login', {
-      params: {
-        username: getValues('username'),
-        password: getValues('password'),
-      },
+    const response = await axios
+      .post('http://localhost:4000/api/login', {
+        username: data.username,
+        password: data.password,
+      })
+      .then((res) => res.data);
+    console.log({
+      r: response,
     });
 
-    if (response === 'No user found!') {
-      console.log('Error occured during submition');
+    if (response.message === 'Login successful') {
+      auth.login();
+      navigate('/profile', {
+        state: {
+          token: response.token,
+        },
+      });
+    } else {
       navigate('/login');
     }
-
-    auth.login();
-    navigate('/profile');
   };
   console.log(errors);
 
@@ -59,7 +65,7 @@ export const Login = () => {
             <div>
               <input
                 className='form-input'
-                type='password'
+                type='text'
                 placeholder='username'
                 {...register('username', { required: true })}
               />
