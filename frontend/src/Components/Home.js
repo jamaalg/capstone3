@@ -5,51 +5,27 @@ import { Footer } from './Footer';
 import { UpcomingEvents } from './UpcomingEvents';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from './context/DataContext';
-
+import axios from 'axios';
 export const Home = () => {
   const [shouldUpdate, setShouldUpdate] = useState(true);
 
   const [events, setEvents] = useState([]);
-  const [categories, setCategories] = useState([
-    'Sports',
-    'Concerts',
-    'Business',
-    'Performing/Visual Arts',
-  ]);
 
   const dataContext = useContext(DataContext);
-
+  const categories = dataContext.categories.current;
   useEffect(() => {
-    /*  const getCategories = async () => {
+    const getUpcomingEvents = async () => {
       try {
         const response = await axios
-          .get('http://localhost:4000/getCategories')
+          .get('http://localhost:4000/api/upcomingEvents')
           .then((res) => res.data);
-        console.log('Fetched Categories');
-        dataContext.setCategoriesRef(response);
+        setEvents(response);
       } catch (err) {
         console.error(err);
       }
     };
 
-    const getEvents = async () => {
-      try {
-        const response = await axios
-          .get('http://localhost:4000/getEvents')
-          .then((res) => res.data);
-        console.log('Fetched Categories');
-        dataContext.(response);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getEvents();
-    getCategories(); */
-    console.log({
-      dataContext: dataContext,
-    });
-    setEvents(dataContext.events.current);
-    //setCategories(dataContext.categories.current);
+    getUpcomingEvents();
   }, []);
 
   return (
