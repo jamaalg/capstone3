@@ -1,30 +1,93 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './Styles/Login.css';
+import BgVideo from './img/bmx.mp4';
+import PasswordIcon from '@mui/icons-material/Password';
+import PersonIcon from '@mui/icons-material/Person';
+import axios from 'axios';
 
 export const Login = () => {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+    const response = await axios.post('http://localhost:4000/api/login', {
+      params: {
+        username: getValues('username'),
+        password: getValues('password'),
+      },
+    });
+
+    if (response === 'No user found!') {
+      console.log('Error occured during submition');
+      navigate('/login');
+    }
+
+    auth.login();
+    navigate('/profile');
+  };
   console.log(errors);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='form-container'>
-      <input
-        type='password'
-        placeholder='username'
-        {...register('username', { required: true })}
-      />
-      <input
-        type='password'
-        placeholder='password'
-        {...register('password', { required: true })}
-      />
+    <div className='login-main-container'>
+      <video loop muted autoPlay preload='auto' className='video-bg-login'>
+        <source src={BgVideo} />
+      </video>
+      <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+        <p className='login-header'> Login</p>
 
-      <input type='submit' className='form-btn' />
-    </form>
+        <div className='form-main-container'>
+          <div className='username-container'>
+            <div className='username-label-container'>
+              <label>
+                <span>
+                  <PersonIcon />
+                </span>
+                Username
+              </label>
+            </div>
+
+            <div>
+              <input
+                className='form-input'
+                type='password'
+                placeholder='username'
+                {...register('username', { required: true })}
+              />
+            </div>
+          </div>
+
+          <div className='password-container'>
+            <div>
+              <label>
+                <span>
+                  <PasswordIcon />
+                </span>
+                Password
+              </label>
+            </div>
+
+            <div className='password-input'>
+              <input
+                className='form-input'
+                type='password'
+                placeholder='password'
+                {...register('password', { required: true })}
+              />
+            </div>
+          </div>
+        </div>
+        <input className='login-submit-btn' type='submit' />
+      </form>
+    </div>
   );
 };

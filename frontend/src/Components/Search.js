@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Dropdown } from 'react-bootstrap';
 import { DataContext } from './context/DataContext.js';
 import { SearchHero } from './SearchHero.js';
+import * as moment from 'moment';
 import axios from 'axios';
 
 export const Search = () => {
@@ -68,8 +69,6 @@ export const Search = () => {
       city: targetLocation[0],
       state: targetLocation[1],
     };
-    console.log(location);
-
     let filteredEventsByLocation = allEvents.filter((event) => {
       return (
         event.location.state === locale.state &&
@@ -130,8 +129,18 @@ export const Search = () => {
     }
   };
 
-  const handleDateSelection = () => {
-    console.log('Selection Handler');
+  const handleDateSelection = async (dateSelected) => {
+    try {
+      const formattedDate = moment(dateSelected).format('YYYY-MM-DD');
+      const response = await axios
+        .get('http://localhost:4000/api/getEventsByDate', {
+          params: { date: formattedDate },
+        })
+        .then((res) => res.data);
+      setCategorie(`Events on: ${formattedDate}`);
+      setEvents(response);
+      setFilterSearchToggle(true);
+    } catch (error) {}
   };
 
   return (
@@ -144,7 +153,7 @@ export const Search = () => {
             <DatePicker
               className='date-picker'
               selected={startDate}
-              onChange={(date) => setStartDate(date)}
+              onChange={(date) => handleDateSelection(date)}
             />
           </div>
           <div className='category-filter-container'>

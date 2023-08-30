@@ -10,21 +10,25 @@ import { useEffect, useState, useCallback } from 'react';
 import { AuthContext } from './Components/context/AuthContext';
 import { DataContextProvider } from './Components/context/DataContextProvider';
 import { Register } from './Components/Register';
+import Fab from '@mui/material/Fab';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Profile } from './Components/Profile';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const login = useCallback(() => {
     setIsLoggedIn(true);
   }, []);
+
   const logout = useCallback(() => {
     setIsLoggedIn(false);
   }, []);
   /*  const isMounted = useRef(false);
   const events = useRef([]);
   const categories = useRef([]);
-
  */
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   return (
     <AuthContext.Provider
@@ -34,18 +38,46 @@ function App() {
         <div className='App'>
           <nav className='nav-container'>
             <ul className='nav-list'>
+              {isLoggedIn ? (
+                <li>
+                  <Link to='/profile'>
+                    <Fab
+                      className='floating-action-btn'
+                      size='large'
+                      color='primary'
+                      aria-label='add'
+                    >
+                      <AccountCircleIcon fontSize='large' />
+                    </Fab>
+                  </Link>
+                </li>
+              ) : (
+                <></>
+              )}
               <li>
                 <Link to='/'>Home </Link>
               </li>
               <li>
                 <Link to='/search'>Search </Link>
               </li>
-              <li>
-                <Link to='/login'>Login </Link>
-              </li>
-              <li>
-                <Link to='/register'>Register </Link>
-              </li>
+              {isLoggedIn ? (
+                <li>
+                  <Link to='/logout' onClick={logout}>
+                    Logout{' '}
+                  </Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to='/login'>Login </Link>
+                </li>
+              )}
+              {isLoggedIn ? (
+                <></>
+              ) : (
+                <li>
+                  <Link to='/register'>Register </Link>
+                </li>
+              )}
             </ul>
           </nav>
           <Routes>
@@ -55,7 +87,10 @@ function App() {
 
             <Route path='/rsvpform' element={<RsvpForm />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/logout' element={<Home />} />
+
             <Route path='/register' element={<Register />} />
+            <Route path='/profile' element={<Profile />} />
 
             <Route path='*' element={<NotFound />} />
           </Routes>

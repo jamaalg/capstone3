@@ -32,14 +32,6 @@
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
-.card-img {
-  height: 175px;
-  object-fit: fill;
-  border-top-right-radius: 10%;
-  border-top-left-radius: 10%;
-  background-image: url('../../../public/images/hip-hop-concert-flyer-english-500020135.png');
-  background-size: cover;
-}
 
 .card-body-event-name {
   text-align: center;

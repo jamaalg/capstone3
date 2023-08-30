@@ -5,10 +5,8 @@ import { User } from '../model/User.js'
 import { writeToFile } from './AdminUtilController.js'
 
 export const register = async (req, res, next) => {
-    const someOtherPlaintextPassword = 'not_bacon';
-    const saltRounds = 10;
-    const myPlaintextPassword = req.body.password;
-
+    const saltRounds = 10
+    const myPlaintextPassword = req.body.password
 
     //console.log(req.body)
 
@@ -19,10 +17,10 @@ export const register = async (req, res, next) => {
             password: hash,
             email: req.body.email,
             location: {
-                city: req.body.city,//.toUppercase(),
-                state: req.body.state//.toUppercase()
+                city: req.body.city, //.toUppercase(),
+                state: req.body.state, //.toUppercase()
             },
-            events: []
+            events: [],
         })
         writeToFile(req.body.username, myPlaintextPassword)
 
@@ -31,20 +29,18 @@ export const register = async (req, res, next) => {
         return await user
             .save()
             .then((user) => {
-                // await writeToFile(username, req.body.password)
+                console.log('User registered successfully')
                 return user
             })
             .catch((error) => {
                 if (error.code === 11000) {
-
                     return 'Username already exists, please use another username to register your account.'
                 }
                 throw new Error('An unknown error occured!')
             })
-    });
+    })
 
-    return 'User registered successfully'
-
+    res.send('Registered!')
 }
 
 export const registerFakeUser = async (userParam) => {
@@ -80,40 +76,39 @@ export const registerFakeUser = async (userParam) => {
     })
 }
 
-export const login = (req, res, next) => {
-    let username = req.body.username
-    let password = req.body.password
+export const login = async (req, res, next) => {
+    try {
+        let usernameParam = req.body.username
+        let passwordParam = req.body.password
 
-    User.findOne({ $or: [{ username }, { password }] }).then((user) => {
-        if (user) {
-            bcrypt.compare(password, user.password, (err, result) => {
-                if (err) {
-                    res.json({
-                        error: err,
-                    })
+        console.log(req.body)
+
+        const user = await getUser(usernameParam)
+
+        bcrypt.compare(passwordParam, user.password, async (err, result) => {
+            console.log('Comparing password in bcrypt')
+            if (err) {
+                res.send('Error logging in')
+            }
+
+            let token = jwt.sign(
+                { username: user.username },
+                'verySecretValue',
+                {
+                    expiresIn: '10h',
                 }
-                if (result) {
-                    let token = jwt.sign(
-                        { username: user.username },
-                        'verySecretValue',
-                        {
-                            expiresIn: '10h',
-                        }
-                    )
-                    res.json({
-                        message: 'Login successful',
-                        token,
-                    })
-                } else {
-                    res.json({
-                        message: 'Password does not match!',
-                    })
-                }
-            })
-        } else {
-            res.json({
-                message: 'No user found!',
-            })
-        }
-    })
+            )
+
+            return { message: 'Login successful', token, user }
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const getUser = async (usernameParam) => {
+    const user = await User.find({ username: usernameParam }).exec()
+    console.log(user)
+
+    return user
 }
