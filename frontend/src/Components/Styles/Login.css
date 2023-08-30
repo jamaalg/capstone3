@@ -1,0 +1,19 @@
+.form-container {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  background-color: white;
+  max-width: 520px;
+}
+
+.form-container input {
+  margin-top: 10px;
+}
+
+.form-btn {
+  width: 25%;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
+import './Styles/Login.css';
 
 import './Styles/Login.css';
 import axios from 'axios';
@@ -22,7 +23,7 @@ export const Register = () => {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='form-container'>
             <input
                 type='text'
                 placeholder='username'
@@ -49,7 +50,7 @@ export const Register = () => {
                 {...register('password', { required: true })}
             />
 
-            <input type='submit' />
+            <input type='submit' className='form-btn' />
         </form>
     );
 };

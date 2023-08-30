@@ -7,7 +7,7 @@ export const SearchHero = ({ handleInputChange }) => {
   return (
     <div className='search-hero-container'>
       <div className='video-overlay2'>
-        <p> Find your next event</p>
+        <p> Find Your Next Event</p>
         <input
           className='search-bar'
           type='search'

@@ -12,7 +12,7 @@ export const Login = () => {
   console.log(errors);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className='form-container'>
       <input
         type='password'
         placeholder='username'
@@ -24,7 +24,7 @@ export const Login = () => {
         {...register('password', { required: true })}
       />
 
-      <input type='submit' />
+      <input type='submit' className='form-btn' />
     </form>
   );
 };
