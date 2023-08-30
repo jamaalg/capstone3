@@ -6,6 +6,7 @@ import './Styles/Login.css';
 import BgVideo from './img/bmx.mp4';
 import PasswordIcon from '@mui/icons-material/Password';
 import PersonIcon from '@mui/icons-material/Person';
+import axios from 'axios';
 
 export const Login = () => {
   const auth = useContext(AuthContext);
@@ -14,9 +15,23 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
+    const response = await axios.post('http://localhost:4000/api/login', {
+      params: {
+        username: getValues('username'),
+        password: getValues('password'),
+      },
+    });
+
+    if (response === 'No user found!') {
+      console.log('Error occured during submition');
+      navigate('/login');
+    }
+
     auth.login();
     navigate('/profile');
   };

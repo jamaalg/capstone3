@@ -2,17 +2,26 @@ import { useForm } from 'react-hook-form';
 import './Styles/RsvpForm.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 export const RsvpForm = ({ ticketPrice, eventId }) => {
+  const navigate = useNavigate();
+  let ticketNo = 0;
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    getValues,
+    setValue,
   } = useForm();
 
   const [ticketQuantity, setTicketQuantity] = useState(0);
   const onSubmit = async (data) => {
-    await axios.post('http://localhost:4000/rsvp', { ...data, eventId });
+    const response = await axios
+      .post('http://localhost:4000/rsvp', { ...data, eventId })
+      .then((res) => res.data);
+    alert(response);
+    navigate('/');
   };
 
   const setQuantity = async (op) => {
@@ -58,10 +67,12 @@ export const RsvpForm = ({ ticketPrice, eventId }) => {
 
           <label>Tickets</label>
           <select
-            /*        value={ticketQuantity}
+            onClick={() => {
+              ticketNo = getValues('tickets');
+            }}
             onChange={(option) => {
-              setTicketQuantity(option);
-            }} */
+              ticketNo = option;
+            }}
             {...register('tickets', { required: true })}
           >
             <option value='1'>1</option>
@@ -71,8 +82,8 @@ export const RsvpForm = ({ ticketPrice, eventId }) => {
             <option value='5'>5</option>
           </select>
 
-          <label> Total </label>
-          <p> {} </p>
+          <label> Total: </label>
+          <p> {ticketNo * ticketPrice} </p>
 
           <input className='form-submit-btn' type='submit' />
         </form>

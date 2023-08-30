@@ -76,40 +76,39 @@ export const registerFakeUser = async (userParam) => {
     })
 }
 
-export const login = (req, res, next) => {
-    let username = req.body.username
-    let password = req.body.password
+export const login = async (req, res, next) => {
+    try {
+        let usernameParam = req.body.username
+        let passwordParam = req.body.password
 
-    User.findOne({ $or: [{ username }, { password }] }).then((user) => {
-        if (user) {
-            bcrypt.compare(password, user.password, (err, result) => {
-                if (err) {
-                    res.json({
-                        error: err,
-                    })
+        console.log(req.body)
+
+        const user = await getUser(usernameParam)
+
+        bcrypt.compare(passwordParam, user.password, async (err, result) => {
+            console.log('Comparing password in bcrypt')
+            if (err) {
+                res.send('Error logging in')
+            }
+
+            let token = jwt.sign(
+                { username: user.username },
+                'verySecretValue',
+                {
+                    expiresIn: '10h',
                 }
-                if (result) {
-                    let token = jwt.sign(
-                        { username: user.username },
-                        'verySecretValue',
-                        {
-                            expiresIn: '10h',
-                        }
-                    )
-                    res.json({
-                        message: 'Login successful',
-                        token,
-                    })
-                } else {
-                    res.json({
-                        message: 'Password does not match!',
-                    })
-                }
-            })
-        } else {
-            res.json({
-                message: 'No user found!',
-            })
-        }
-    })
+            )
+
+            return { message: 'Login successful', token, user }
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const getUser = async (usernameParam) => {
+    const user = await User.find({ username: usernameParam }).exec()
+    console.log(user)
+
+    return user
 }

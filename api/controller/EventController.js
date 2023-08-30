@@ -102,7 +102,8 @@ export const getEventById = async (eventId) => {
 
 export const getEventsByDate = async (req, res, next) => {
     try {
-        let requestedDate = req.body.date
+        console.log(req.query)
+        let requestedDate = req.query.date
         const response = await Event.find({ date: requestedDate })
         console.log(response)
         res.send(response)

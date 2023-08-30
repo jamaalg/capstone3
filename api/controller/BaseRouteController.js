@@ -52,6 +52,7 @@ export const rsvpToEvent = async (req, res, next) => {
     try {
         //const results = await Event.find()
         const { name, address, phoneNumber, tickets, eventId } = req.body
+        console.log(req.body)
         const event = await getEventById(eventId)
 
         if (event.capacity === 0) {
@@ -64,13 +65,15 @@ export const rsvpToEvent = async (req, res, next) => {
             )
         }
 
-        e
         event.attendees.push(name)
         event.capacity = event.capacity - tickets
-        console.log({
-            message: 'rsvp route called',
-            request: event,
-        })
+        const response = await event
+            .save()
+            .then((res) => res)
+            .catch((err) => {
+                throw Error('Error saving document.')
+            })
+        res.send(`Successfully rsvp to ${event.name}`)
     } catch (error) {
         throw new Error('Error rsvp to event')
     }

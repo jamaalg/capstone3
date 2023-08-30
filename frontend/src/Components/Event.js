@@ -1,20 +1,12 @@
 import { useLocation } from 'react-router-dom';
-import { Hero } from './Hero';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Styles/Event.css';
 import axios from 'axios';
 import { RsvpForm } from './RsvpForm.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Footer } from './Footer';
-import {
-  GoogleMap,
-  useJsApiLoader,
-  Marker,
-  InfoWindow,
-  withGoogleMap,
-  withScriptjs,
-} from '@react-google-maps/api';
+import { useJsApiLoader } from '@react-google-maps/api';
 
 export const Event = () => {
   const eventData = useLocation();
