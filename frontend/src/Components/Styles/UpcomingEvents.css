@@ -16,5 +16,7 @@ body {
 
 .upcoming-events-header {
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
+  font-weight: 900;
+  font-size: 3rem;
+  padding-left: 20px;
 }
