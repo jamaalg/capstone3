@@ -115,7 +115,6 @@ const filenames = [
 export const EventCard = ({ event }) => {
   const selectRandomPicture = () => {
     const randomIndex = Math.floor(Math.random() * filenames.length);
-    console.log(randomIndex);
     return filenames[randomIndex];
   };
 
