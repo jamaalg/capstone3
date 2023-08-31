@@ -1,13 +1,31 @@
 .profile-main-container {
   height: 100vh;
 }
+
+.profile-copy-info-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 50px;
+}
+.profile-copy-pic-container {
+  font-size: 50px;
+  font-weight: 900;
+  width: 250px;
+  text-align: center;
+}
+
+.profile-copy-bio-container {
+  height: 100%;
+  width: 50%;
+  padding: 20px;
+}
+
 .profile-info-container {
   display: flex;
   justify-content: space-evenly;
-
   height: 300px;
-  padding: 20px;
-  margin-top: 100px;
+  padding: 5px 20px 20px 20px;
+  margin-top: 25px;
   margin-bottom: 75px;
 }
 

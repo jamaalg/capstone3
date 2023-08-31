@@ -11,11 +11,10 @@ import axios from 'axios';
 export const Login = () => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  const [token, setToken] = useState('');
+  //const [token, setToken] = useState('');
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -27,14 +26,21 @@ export const Login = () => {
       })
       .then((res) => res.data);
     console.log({
-      r: response,
+      response,
     });
 
     if (response.message === 'Login successful') {
+      const { userData, token } = response;
+      const user = {
+        data: userData,
+        token,
+      };
       auth.login();
+      auth.setUser(user);
+      console.log(auth.user);
       navigate('/profile', {
         state: {
-          token: response.token,
+          user,
         },
       });
     } else {

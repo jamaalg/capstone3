@@ -16,6 +16,7 @@ import { Profile } from './Components/Profile';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   const login = useCallback(() => {
     setIsLoggedIn(true);
@@ -24,15 +25,18 @@ function App() {
   const logout = useCallback(() => {
     setIsLoggedIn(false);
   }, []);
-  /*  const isMounted = useRef(false);
-  const events = useRef([]);
-  const categories = useRef([]);
- */
+
   useEffect(() => {}, []);
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
+      value={{
+        isLoggedIn: isLoggedIn,
+        login: login,
+        logout: logout,
+        user,
+        setUser,
+      }}
     >
       <DataContextProvider>
         <div className='App'>

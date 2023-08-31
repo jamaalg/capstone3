@@ -12,18 +12,29 @@ export const Profile = () => {
     { id: 7 },
   ]);
   const { state } = useLocation();
+  const { user } = state;
+  const { data, token } = user;
+  console.log({ state });
 
   return (
     <div className='profile-main-container'>
+      <div className='profile-copy-info-container'>
+        <div className='profile-copy-pic-container'>
+          <p>{data.username}</p>
+        </div>
+        <div className='profile-copy-bio-container'></div>
+      </div>
       <div className='profile-info-container'>
         <div className='profile-pic-container'></div>
         <div className='profile-bio-container'>
           <p> Name: Gloria Doe </p>
-          <p>Hometown: Chicago, IL </p>
+          <p>
+            Hometown: {data.location.city}, {data.location.state}{' '}
+          </p>
           <p>Favorite Events: Comedy Shows </p>
           <p> Favorite Band: Outkast</p>
           <p>Motto to live by: "Cherish every moment, embrace every hug"</p>
-          <p>{state.token}</p>
+          <p></p>
         </div>
       </div>
       <div className='profile-rsvp-container'>
