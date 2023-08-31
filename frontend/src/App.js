@@ -23,6 +23,7 @@ function App() {
   }, []);
 
   const logout = useCallback(() => {
+    setUser(null);
     setIsLoggedIn(false);
   }, []);
 

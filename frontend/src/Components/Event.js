@@ -10,8 +10,16 @@ import { useJsApiLoader } from '@react-google-maps/api';
 
 export const Event = () => {
   const eventData = useLocation();
-  const { _id, date, name, description, promoter, location, ticketPrice } =
-    eventData.state.eventData;
+  const {
+    _id,
+    date,
+    name,
+    description,
+    promoter,
+    location,
+    ticketPrice,
+    attendees,
+  } = eventData.state.eventData;
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -89,7 +97,6 @@ export const Event = () => {
 
         <p className='event-date'>{date}</p>
 
-        <p> </p>
         <section className='event-description'>
           <p> {description}</p>
           <br />
@@ -105,7 +112,17 @@ export const Event = () => {
             years, sometimes by accident, sometimes on purpose (injected humour
             and the like).
           </p>
+
+          <>
+            <ul className='attendees-list'>
+              Attendees:
+              {attendees.map((a) => {
+                return <li className='attendees-list-item'>{a}</li>;
+              })}
+            </ul>
+          </>
         </section>
+
         <button onClick={handleShow} className='event-submit-button'>
           RSVP
         </button>

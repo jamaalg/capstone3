@@ -51,7 +51,7 @@ const getDistinctValues = async () => {
 export const rsvpToEvent = async (req, res, next) => {
     try {
         //const results = await Event.find()
-        const { name, address, phoneNumber, tickets, eventId } = req.body
+        const { name, address, phoneNumber, tickets, eventId, user } = req.body
         console.log(req.body)
         const event = await getEventById(eventId)
 
@@ -65,7 +65,7 @@ export const rsvpToEvent = async (req, res, next) => {
             )
         }
 
-        event.attendees.push(name)
+        event.attendees.push(user.data.username)
         event.capacity = event.capacity - tickets
         const response = await event
             .save()

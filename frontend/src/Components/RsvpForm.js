@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
 import './Styles/RsvpForm.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
+
 export const RsvpForm = ({ ticketPrice, eventId }) => {
+  const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  let ticketNo = 0;
+  const [ticketNo, setTicketNo] = useState(0);
   const {
     register,
     handleSubmit,
@@ -16,9 +19,11 @@ export const RsvpForm = ({ ticketPrice, eventId }) => {
   } = useForm();
 
   const [ticketQuantity, setTicketQuantity] = useState(0);
+
   const onSubmit = async (data) => {
+    const user = auth.user;
     const response = await axios
-      .post('http://localhost:4000/rsvp', { ...data, eventId })
+      .post('http://localhost:4000/rsvp', { ...data, eventId, user })
       .then((res) => res.data);
     alert(response);
     navigate('/');
@@ -68,10 +73,10 @@ export const RsvpForm = ({ ticketPrice, eventId }) => {
           <label>Tickets</label>
           <select
             onClick={() => {
-              ticketNo = getValues('tickets');
+              setTicketNo(getValues('tickets'));
             }}
             onChange={(option) => {
-              ticketNo = option;
+              setTicketNo(option);
             }}
             {...register('tickets', { required: true })}
           >
@@ -81,9 +86,9 @@ export const RsvpForm = ({ ticketPrice, eventId }) => {
             <option value='4'>4</option>
             <option value='5'>5</option>
           </select>
-
+          <p> Per Ticket: {ticketPrice} </p>
           <label> Total: </label>
-          <p> {ticketNo * ticketPrice} </p>
+          <p> ${ticketNo * ticketPrice} </p>
 
           <input className='form-submit-btn' type='submit' />
         </form>

@@ -38,6 +38,16 @@
 }
 .event-description {
   width: 40%;
+  margin-bottom: 20px;
+}
+
+.attendees-list {
+  list-style: none;
+  margin-bottom: 75px;
+}
+
+.attendees-list-item {
+  display: inline-block;
 }
 
 .modal-container {

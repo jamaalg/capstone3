@@ -1,7 +1,7 @@
 import './Styles/ProfileCardRound.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import bgphoto from './img/picture-of-grandmother-341637084.png'
+import bgphoto from './img/picture-of-grandmother-341637084.png';
 
 const filenames = [
   'band-concert-flyer-936944700.png',
@@ -106,41 +106,23 @@ const filenames = [
   'wine-tasting-event-flyer-55209959.png',
 ];
 
-export const ProfileCardRound = ({ event }) => {
-
-
-
-
+export const ProfileCardRound = ({ picture }) => {
   const selectRandomPicture = () => {
     const randomIndex = Math.floor(Math.random() * filenames.length);
     return filenames[randomIndex];
   };
 
   const profileStyles = {
-
-
-    backgroundImage: `url(${bgphoto})`,
+    backgroundImage: `url(${picture})`,
     height: '250px',
     width: '250px',
-    borderRadius: '50%',
+    borderRadius: '20%',
     alignItems: 'center',
     marginRight: '100px',
     backgroundSize: 'cover',
     boxShadow:
-      'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'
-
-
-
-
-
-
-
+      'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
   };
 
-
-
-
-  return <div style={profileStyles}>
-
-  </div>;
+  return <div style={profileStyles}></div>;
 };

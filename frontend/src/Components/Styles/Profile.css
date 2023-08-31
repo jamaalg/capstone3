@@ -1,5 +1,6 @@
 .profile-main-container {
   height: 100vh;
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(189, 189, 189));
 }
 
 .profile-copy-info-container {
@@ -26,15 +27,15 @@
   height: 300px;
   padding: 5px 20px 20px 20px;
   margin-top: 25px;
-  margin-bottom: 75px;
+  margin-bottom: 100px;
 }
 
 .profile-pic-container {
-  background-image: url("../../../public/images/Profile/picture-of-a-happy-grandmother-358832120.png");
+  background-image: url('../../../public/images/Profile/picture-of-a-happy-grandmother-358832120.png');
   background-size: cover;
   height: 250px;
   width: 250px;
-  border-radius: 50%;
+  border-radius: 20%;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -53,20 +54,25 @@
 
 .profile-rsvp-container {
   display: flex;
+  padding-left: 350px;
+  margin-bottom: 200px;
 }
 
 .profile-rsvp-container div {
 }
 
 .profile-review-container {
-  background-color: pink;
+  background-image: linear-gradient(rgb(227, 219, 219), rgb(158, 231, 243));
   height: 250px;
 }
 
 .bio-info {
-  font-size: larger;
+  font-size: 20px;
+  font-weight: 800;
 }
 .recent-events {
   font-size: 50px;
   font-weight: 900;
+  margin-bottom: 150px;
+  margin-left: 350px;
 }

@@ -1,31 +1,33 @@
 import './Styles/CardRound.css';
 import { Link } from 'react-router-dom';
 import sportsImg from './img/sports.jpeg';
-import businessImg from './img/business-conference.jpeg';
-import concertImg from './img/concert.jpeg';
+import businessImg from './img/business.jpeg';
+import concertImg from './img/concert2.jpeg';
 import theaterImg from './img/theater.jpeg';
 
 export const CardRound = ({ categorie }) => {
   const catStyles = {
     sports: {
       backgroundImage: `url(${sportsImg})`,
+      backgroundSize: 'cover',
       height: '250px',
       width: '250px',
-      borderRadius: '50%',
+      borderRadius: '20%',
       color: 'white',
       alignItems: 'center',
       display: 'flex',
       'justify-content': 'center',
       'font-size': '50px',
       'margin-right': '100px',
-      'object-fit': 'contain',
-      border: '2px solid #000',
+      boxShadow:
+        'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
     },
     business: {
       backgroundImage: `url(${businessImg})`,
+      backgroundSize: 'cover',
       height: '250px',
       width: '250px',
-      borderRadius: '50%',
+      borderRadius: '20%',
       color: 'white',
       'align-items': 'center',
       display: 'flex',
@@ -33,13 +35,15 @@ export const CardRound = ({ categorie }) => {
       'font-size': '50px',
       'margin-right': '100px',
       'object-fit': 'contain',
-      border: '2px solid #000',
+      boxShadow:
+        'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
     },
     concert: {
       backgroundImage: `url(${concertImg})`,
+      backgroundSize: 'cover',
       height: '250px',
       width: '250px',
-      'border-radius': '50%',
+      'border-radius': '20%',
       color: 'white',
       'align-items': 'center',
       display: 'flex',
@@ -47,13 +51,15 @@ export const CardRound = ({ categorie }) => {
       'font-size': '50px',
       'margin-right': '100px',
       'object-fit': 'contain',
-      border: '2px solid #000',
+      boxShadow:
+        'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
     },
     performing: {
       backgroundImage: `url(${theaterImg})`,
+      backgroundSize: 'cover',
       height: '250px',
       width: '250px',
-      'border-radius': '50%',
+      'border-radius': '20%',
       color: 'white',
       'align-items': 'center',
       display: 'flex',
@@ -61,7 +67,8 @@ export const CardRound = ({ categorie }) => {
       'font-size': '50px',
       'margin-right': '100px',
       'object-fit': 'cover',
-      border: '2px solid #000',
+      boxShadow:
+        'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
     },
   };
 

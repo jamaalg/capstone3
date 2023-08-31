@@ -9,7 +9,7 @@
   height: 250px;
   top: 0;
   object-fit: cover;
-  filter: opacity(40%);
+  filter: opacity(70%);
   z-index: -1;
 }
 
