@@ -23,6 +23,7 @@ export const Profile = () => {
           <p>Favorite Events: Comedy Shows </p>
           <p> Favorite Band: Outkast</p>
           <p>Motto to live by: "Cherish every moment, embrace every hug"</p>
+          <p>{state.token}</p>
         </div>
       </div>
       <div className='profile-rsvp-container'>

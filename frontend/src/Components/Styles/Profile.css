@@ -1,58 +1,43 @@
-.profile-main-container{
-   
-    height: 100vh;
+.profile-main-container {
+  height: 100vh;
 }
-.profile-info-container{
-    display: flex;
-    justify-content: space-evenly;
+.profile-info-container {
+  display: flex;
+  justify-content: space-evenly;
 
-    height: 300px;
-    padding: 20px;
-    margin-bottom: 75px;
+  height: 300px;
+  padding: 20px;
+  margin-top: 100px;
+  margin-bottom: 75px;
 }
 
-.profile-pic-container{
-
-    background-image: url('../../../public/images/Profile/picture-of-a-happy-grandmother-358832120.png');
-    background-size: cover;
-    height: 250px;
-    width: 250px;
-    border-radius: 50%;
-    box-shadow:
+.profile-pic-container {
+  background-image: url('../../../public/images/Profile/picture-of-a-happy-grandmother-358832120.png');
+  background-size: cover;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  box-shadow:
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-
-
 }
 
-
-
-.profile-bio-container{
-
-    
-    height: 100%;
-    width: 50%;
-    padding: 20px;
-    box-shadow:
+.profile-bio-container {
+  height: 100%;
+  width: 50%;
+  padding: 20px;
+  box-shadow:
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-
 }
 
-.profile-rsvp-container{
-    
-    height: 150px;
-    display: flex;
-
-
-
+.profile-rsvp-container {
+  display: flex;
 }
 
-.profile-review-container{
-    background-color: pink;
-    height: 250px ;
-
-
+.profile-review-container {
+  background-color: pink;
+  height: 250px;
 }
