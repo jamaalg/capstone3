@@ -10,12 +10,12 @@ export const Footer = () => {
             {' '}
             <hr></hr>
           </li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
+          <h2>About Us</h2>
+          <a href='Home.js' ><li> Buy tickets</li></a>
+          <a href='Home.js' ><li> Contact Us</li></a>
+          <a href='Home.js' ><li> Careers</li></a>
+          <a href='Home.js' ><li> Customer Service</li></a>
+        
         </ul>
       </div>
       <div className='sub-container'>
@@ -24,13 +24,13 @@ export const Footer = () => {
           <li>
             {' '}
             <hr></hr>
+            <h2>Social Media</h2>
           </li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
+         <a href='Home.js'><li> Connect with us on Facebook</li></a>
+          <a href='Home.js' ><li> Connect with us on Tik Tok</li></a>
+          <a href='Home.js' > <li> Connect with us on Instagram</li></a>
+          <a href='Home.js' ><li> Connect with us on Youtube </li></a>
+          
         </ul>
       </div>
       <div className='sub-container'>
@@ -39,13 +39,13 @@ export const Footer = () => {
           <li>
             {' '}
             <hr></hr>
+            <h2>Find Events </h2>
           </li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
-          <li> Buy tickets</li>
+          <a href='Home.js' ><li> Chicago Events</li></a>
+          <a href='Home.js' ><li> San Francisco Events </li></a>
+          <a href='Home.js' ><li> Los Angeles Events  </li></a>
+          <a href='Home.js' ><li> New York Events </li></a>
+          
         </ul>
       </div>
     </div>
