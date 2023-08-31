@@ -30,7 +30,7 @@
 }
 
 .profile-pic-container {
-  background-image: url('../../../public/images/Profile/picture-of-a-happy-grandmother-358832120.png');
+  background-image: url("../../../public/images/Profile/picture-of-a-happy-grandmother-358832120.png");
   background-size: cover;
   height: 250px;
   width: 250px;
@@ -55,7 +55,18 @@
   display: flex;
 }
 
+.profile-rsvp-container div {
+}
+
 .profile-review-container {
   background-color: pink;
   height: 250px;
+}
+
+.bio-info {
+  font-size: larger;
+}
+.recent-events {
+  font-size: 50px;
+  font-weight: 900;
 }
