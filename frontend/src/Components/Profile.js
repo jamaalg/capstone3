@@ -27,21 +27,26 @@ export const Profile = () => {
       <div className='profile-info-container'>
         <div className='profile-pic-container'></div>
         <div className='profile-bio-container'>
-          <p> Name: Gloria Doe </p>
-          <p>
+          <p className='bio-info'> Name: Gloria Doe </p>
+          <p className='bio-info'>
             Hometown: {data.location.city}, {data.location.state}{' '}
           </p>
-          <p>Favorite Events: Comedy Shows </p>
-          <p> Favorite Band: Outkast</p>
-          <p>Motto to live by: "Cherish every moment, embrace every hug"</p>
+          <p className='bio-info'>Favorite Events: Comedy Shows </p>
+          <p className='bio-info'> Favorite Band: Outkast</p>
+          <p className='bio-info'>Motto to live by: "Cherish every moment, embrace every hug"</p>
           <p></p>
         </div>
       </div>
-      <div className='profile-rsvp-container'>
-        {events.map((event) => {
-          return <ProfileCardRound event={event} />;
-        })}
-      </div>
+      <>
+        <p className="recent-events">Recently Attended Events</p>
+        <div className='profile-rsvp-container'>
+
+          {events.map((event) => {
+            return <ProfileCardRound event={event} />;
+          })}
+        </div>
+      </>
+
     </div>
   );
 };

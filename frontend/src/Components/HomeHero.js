@@ -7,8 +7,9 @@ export const HomeHero = () => {
   return (
     <div className='hero2-container'>
       <div className='video-overlay'>
-        <p> bored?</p>
-        find out <span className='whats-happening'> whats happening</span>
+        <p> Bored?</p>
+        <p>Find Out <span className='whats-happening'> What's Happening</span></p>
+
       </div>
       <video loop muted autoPlay preload='auto' className='video-bg'>
         <source src={BgVideo} />
