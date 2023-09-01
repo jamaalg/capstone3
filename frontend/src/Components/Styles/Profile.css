@@ -1,6 +1,5 @@
 .profile-main-container {
   height: 100vh;
-  background-image: linear-gradient(rgb(255, 255, 255), rgb(189, 189, 189));
 }
 
 .profile-copy-info-container {
@@ -54,7 +53,7 @@
 
 .profile-rsvp-container {
   display: flex;
-  padding-left: 350px;
+  padding-left: 250px;
   margin-bottom: 200px;
 }
 
@@ -73,6 +72,6 @@
 .recent-events {
   font-size: 50px;
   font-weight: 900;
-  margin-bottom: 150px;
-  margin-left: 350px;
+  margin-bottom: 100px;
+  margin-left: 250px;
 }

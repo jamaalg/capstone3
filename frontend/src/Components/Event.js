@@ -1,15 +1,54 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './Styles/Event.css';
-import axios from 'axios';
 import { RsvpForm } from './RsvpForm.js';
+import { Footer } from './Footer';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Footer } from './Footer';
-import { useJsApiLoader } from '@react-google-maps/api';
 
+const fileNames = [
+  'broadway-flyer-107416260.png',
+  'broadway-flyer-253973267.png',
+  'broadway-performance-flyer-59923965.png',
+  'broadway-performance-flyer-8507921.png',
+  'business-convention-flyer-327022266.png',
+  'business-event-flyer-357283510.png',
+  'business-event-flyer-360671840.png',
+  'business-event-flyer-468828390.png',
+  'business-event-flyer-890516959.png',
+  'business-event-flyer-905353253.png',
+  'concert-flyer-advertisement-293732232.png',
+  'electronics-advertisement-conference-flyer--303148463.png',
+  'electronics-advertisement-flyer--917380758.png',
+  'explosive-rock-concert-flyer-english-730897177.png',
+  'flyer-for-gamer-night-388954196.png',
+  'flyer-for-gamer-night-english-language-130416461.png',
+  'flyer-for-gamer-night-english-language-686941367.png',
+  'generate a party flyer_.png',
+  'hip-hop-concert-flyer-english-443476958.png',
+  'hip-hop-concert-flyer-english-500020135.png',
+  'musical-flyer-291950.png',
+  'pop-artist-concert-flyer-english-103973788.png',
+  'pop-artist-concert-flyer-english-163941680.png',
+  'real-estate-advertisement-flyer--544345881.png',
+  'rock-concert-flyer-521943609.png',
+  'rock-concert-flyer-653240672.png',
+  'rock-concert-flyer-908888011.png',
+  'sports-event-flyer-baseball-599126480.png',
+  'sports-event-flyer-basketball-tournament-842403090.png',
+  'sports-event-flyer-football-169532468.png',
+  'sports-event-flyer-hockey-tournament-445959614.png',
+  'sports-event-flyer-soccer-855213610.png',
+  'sports-event-flyer-tennis-tournament-90673898.png',
+  'theatrical-performance-flyer-847369908.png',
+  'theatrical-play-flyer-665943031.png',
+];
 export const Event = () => {
   const eventData = useLocation();
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
   const {
     _id,
     date,
@@ -21,15 +60,16 @@ export const Event = () => {
     attendees,
   } = eventData.state.eventData;
 
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_API_KEY,
-  });
-
   const [position, setPosition] = useState({
     lat: 0,
     lng: 0,
   });
+  /*   const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_API_KEY,
+  });
+
+
   const containerStyle = {
     width: '400px',
     height: '400px',
@@ -39,7 +79,7 @@ export const Event = () => {
     lat: -3.745,
     lng: -38.523,
   };
-
+ */
   const getGeoLocationCoordinates = async () => {
     try {
       const response = await axios
@@ -66,26 +106,29 @@ export const Event = () => {
     }
   };
 
+  const selectRandomPicture = () => {
+    const randomIndex = Math.floor(Math.random() * fileNames.length);
+    return `../images/${fileNames[randomIndex]}`;
+  };
+
   useEffect(() => {
     getGeoLocationCoordinates();
     console.log(eventData);
   }, []);
 
-  const handleRSVP = () => {
-    console.log('RSVP Handler');
+  const imageStyle = {
+    width: '45%',
+    boxShadow:
+      'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
   };
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     <div className='master-container'>
       <div className='image-container'>
         <img
+          style={imageStyle}
           className='event-image'
-          src='../images/hip-hop-concert-flyer-english-443476958.png'
+          src={selectRandomPicture()}
         ></img>
       </div>
 
@@ -112,15 +155,6 @@ export const Event = () => {
             years, sometimes by accident, sometimes on purpose (injected humour
             and the like).
           </p>
-
-          <>
-            <ul className='attendees-list'>
-              Attendees:
-              {attendees.map((a) => {
-                return <li className='attendees-list-item'>{a}</li>;
-              })}
-            </ul>
-          </>
         </section>
 
         <button onClick={handleShow} className='event-submit-button'>
@@ -136,7 +170,7 @@ export const Event = () => {
               <Modal.Title>{name}</Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-container'>
-              <RsvpForm ticketPrice={ticketPrice} eventId={_id} />{' '}
+              <RsvpForm ticketPrice={ticketPrice} eventId={_id} />
             </Modal.Body>
             <Modal.Footer>
               <Button variant='secondary' onClick={handleClose}>
@@ -148,6 +182,20 @@ export const Event = () => {
             </Modal.Footer>
           </Modal>
         </div>
+      </div>
+
+      <div className='attendees-div'>
+        <ul className='attendees-list'>
+          <h3 className='list-header'>Attendees</h3>
+          <br></br>
+          {attendees.map((a) => {
+            return (
+              <li className='attendees-list-item'>
+                {a}, <span className='span'></span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
       <Footer />
     </div>

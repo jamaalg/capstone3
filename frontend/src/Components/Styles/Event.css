@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .event-date {
@@ -16,13 +16,6 @@
   display: flex;
   justify-content: center;
 }
-.event-image {
-  width: 45%;
-  box-shadow:
-    rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
 .event-submit-button {
   background-color: #001d4a;
   color: white;
@@ -48,6 +41,7 @@
 
 .attendees-list-item {
   display: inline-block;
+  font-style: italic;
 }
 
 .modal-container {
@@ -65,4 +59,17 @@
 }
 
 .master-container {
+}
+
+.attendees-div {
+  margin-left: 470px;
+}
+
+.span {
+  margin-left: 10px;
+}
+
+.list-header {
+  font-size: 20px;
+  font-weight: 600;
 }

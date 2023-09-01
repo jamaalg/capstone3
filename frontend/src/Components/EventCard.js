@@ -158,7 +158,7 @@ export const EventCard = ({ event }) => {
           <span className='card-icon'>
             <FontAwesomeIcon icon={faDollarSign} />
           </span>
-          ${event.ticketPrice}
+          {event.ticketPrice}
         </p>
         <p className='card-body-event-attendees'>
           <span className='card-icon'>

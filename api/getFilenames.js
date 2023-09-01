@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename)
 
 const getFileNames = () => {
     let files = fs.readdirSync(
-        path.join(__dirname, '../frontEnd/public/images/small')
+        path.join(__dirname, '../frontEnd/public/images/')
     )
 
     console.log(files.filter(isNotJunk))
